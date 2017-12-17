@@ -47,7 +47,7 @@ MatchGame.renderCards = function(cardValues, $game) {
   ];
 
   $game.empty();
-  $game.data('matchCards', [])
+  $game.data('matchCardsIdx', null); // null = not set
 
   for (var i = 0; i < cardValues.length; i++) {
     var $card = $('<div class="col-xs-3 card"></div>');
@@ -76,43 +76,64 @@ MatchGame.renderCards = function(cardValues, $game) {
  */
 
 MatchGame.flipCard = function($card, $game) {
-  // check if in array (-1 means not in array) or already flipped
-  if (($.inArray($card.data('index'), $game.data('matchCards')) > -1) || ($card.data('flipped')) ){
+  var card0Index = $game.data('matchCardsIdx');
+
+  // check if already selected or already flipped
+  if (($card.data('index') === card0Index) || $card.data('flipped')) {
     return;
   }
 
   // change color for flip
-  $card.css('background-color', $card.data('color'));
-  $card.text($card.data('value'));
-  $card.data('flipped', true);
+  MatchGame.showCard($card);
 
-  $game.data('matchCards').push($card.data('index'));
-  console.log("$game.data('matchCards') = " + $game.data('matchCards'));
+  // check for match - if matchCardsIdx = null - it is not set, set if it is not null, then go and reteive the other card and check the values.
+  if (card0Index === null) {
+    $game.data('matchCardsIdx', $card.data('index'));
 
-  if ($game.data('matchCards').length > 1) {
-    var $card1 = $game.children().filter($('.card')).eq( $game.data('matchCards')[0] );
-    console.log('card1: ' + $card1.data('value') + '\ncard:  ' + $card.data('value'));
+    console.log("$game.data('matchCardsIdx') = " + $game.data('matchCardsIdx'));
 
-    if ($card1.data('value') === $card.data('value')) {
-      $card1.css('background-color', 'rgb(153, 153, 153)');
-      $card1.css('color', 'rgb(204, 204, 204)');
+  } else {
+    var $card0 = $('.card').eq(card0Index);
 
-      $card.css('background-color', 'rgb(153, 153, 153)');
-      $card.css('color', 'rgb(204, 204, 204)');
+    console.log('card0: ' + $card0.data('value') + '\ncard:  ' + $card.data('value'));
+
+    if ($card0.data('value') === $card.data('value')) {
+        MatchGame.showMatchedCard($card0);
+        MatchGame.showMatchedCard($card);
     } else {
       setTimeout(function () {
-        $card1.css('background-color', 'rgb(32, 64, 86)');
-        $card1.empty();
-        $card1.data('flipped', false);
-
-        $card.css('background-color', 'rgb(32, 64, 86)');
-        $card.empty();
-        $card.data('flipped', false);
+        MatchGame.showResetCard($card0);
+        MatchGame.showResetCard($card);
       }, 350);
     }
 
     // reset matchCards
-    $game.data('matchCards', []);
+    $game.data('matchCardsIdx', null);
   }
+};
 
+/*
+  Changes the color and attributes of a card being shown (not matched - yet)
+*/
+MatchGame.showCard = function ($card) {
+  $card.css('background-color', $card.data('color'));
+  $card.text($card.data('value'));
+  $card.data('flipped', true);
+};
+
+/*
+  Changes the color and attributes of a that has been matched
+*/
+MatchGame.showMatchedCard = function ($card) {
+  $card.css('background-color', 'rgb(153, 153, 153)');
+  $card.css('color', 'rgb(204, 204, 204)');
+};
+
+/*
+  Changes the color and attributes of a that has been NOT matched
+*/
+MatchGame.showResetCard = function ($card) {
+  $card.css('background-color', 'rgb(32, 64, 86)');
+  $card.empty();
+  $card.data('flipped', false);
 };
