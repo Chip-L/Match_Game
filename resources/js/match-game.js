@@ -96,15 +96,19 @@ MatchGame.flipCard = function($card, $game) {
     if ($card1.data('value') === $card.data('value')) {
       $card1.css('background-color', 'rgb(153, 153, 153)');
       $card1.css('color', 'rgb(204, 204, 204)');
+
       $card.css('background-color', 'rgb(153, 153, 153)');
       $card.css('color', 'rgb(204, 204, 204)');
     } else {
-      $card1.css('background-color', 'rgb(32, 64, 86)');
-      $card1.empty();
-      $card1.data('flipped', false);
-      $card.css('background-color', 'rgb(32, 64, 86)');
-      $card.empty();
-      $card.data('flipped', false);
+      setTimeout(function () {
+        $card1.css('background-color', 'rgb(32, 64, 86)');
+        $card1.empty();
+        $card1.data('flipped', false);
+
+        $card.css('background-color', 'rgb(32, 64, 86)');
+        $card.empty();
+        $card.data('flipped', false);
+      }, 350);
     }
 
     // reset matchCards
