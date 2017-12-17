@@ -47,14 +47,20 @@ MatchGame.renderCards = function(cardValues, $game) {
   ];
 
   $game.empty();
+  $game.data('matchCards', [])
 
   for (var i = 0; i < cardValues.length; i++) {
     var $card = $('<div class="col-xs-3 card"></div>');
-    $card.data('card', {index: i,
-                         value: cardValues[i],
-                         flipped: false,
-                         cardColor: colorValue[ cardValues[i] - 1 ]
-                       });
+    $card.data('index', i);
+    $card.data('value', cardValues[i]);
+    $card.data('flipped', false);
+    $card.data('color', colorValue[ cardValues[i] - 1 ]);
+    $card.click(function (event) {
+      $card = $(this);
+      $game =$(this).parent();
+      MatchGame.flipCard($card, $game);
+    })
+
     $game.append($card);
 
     // Force next columns to break to new line every 4 cards
@@ -70,5 +76,39 @@ MatchGame.renderCards = function(cardValues, $game) {
  */
 
 MatchGame.flipCard = function($card, $game) {
+  // check if in array (-1 means not in array) or already flipped
+  if (($.inArray($card.data('index'), $game.data('matchCards')) > -1) || ($card.data('flipped')) ){
+    return;
+  }
+
+  // change color for flip
+  $card.css('background-color', $card.data('color'));
+  $card.text($card.data('value'));
+  $card.data('flipped', true);
+
+  $game.data('matchCards').push($card.data('index'));
+  console.log("$game.data('matchCards') = " + $game.data('matchCards'));
+
+  if ($game.data('matchCards').length > 1) {
+    var $card1 = $game.children().filter($('.card')).eq( $game.data('matchCards')[0] );
+    console.log('card1: ' + $card1.data('value') + '\ncard:  ' + $card.data('value'));
+
+    if ($card1.data('value') === $card.data('value')) {
+      $card1.css('background-color', 'rgb(153, 153, 153)');
+      $card1.css('color', 'rgb(204, 204, 204)');
+      $card.css('background-color', 'rgb(153, 153, 153)');
+      $card.css('color', 'rgb(204, 204, 204)');
+    } else {
+      $card1.css('background-color', 'rgb(32, 64, 86)');
+      $card1.empty();
+      $card1.data('flipped', false);
+      $card.css('background-color', 'rgb(32, 64, 86)');
+      $card.empty();
+      $card.data('flipped', false);
+    }
+
+    // reset matchCards
+    $game.data('matchCards', []);
+  }
 
 };
