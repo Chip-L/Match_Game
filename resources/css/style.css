@@ -1,40 +1,45 @@
 /*********************************** Fonts  ***********************************/
+/************* Work Sans  *************/
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Work Sans'), local('WorkSans-Regular'), url(https://fonts.gstatic.com/s/worksans/v3/ElUAY9q6T0Ayx4zWzW63VFtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
 
-
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Work Sans Bold'), local('WorkSans-Bold'), url(https://fonts.gstatic.com/s/worksans/v3/4udXuXg54JlPEP5iKO5Amegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
 /****************************** Universal Styles ******************************/
 
-html {
-  font-family: Helvetica;
-  font-size: 16px;
+/* change from normal HTML to body so styles aren't overridden by bootstrap */
+body {
+  font-family: "Work Sans", sans-serif;
+  font-size: 14px;
+  background-color: rgb(255, 242,  242);
 }
 
-.mobile-show {
-  display: none;
+/******************************** Insturctions ********************************/
+
+h1 {
+  font-weight: bold;
+  font-size: 2.5rem;
+  color: rgb(32, 64, 86);
+  margin-bottom: 3rem;
 }
 
-.image-container {
-  overflow: hidden;
+h2 {
+  font-size: 1rem;
+  font-weight: bold;
+  color: rgb(32, 64, 86);
 }
 
-.image-container img {
-  height: auto;
-  width: 100%;
-}
-
-.video-container {
-  width: 100%
-}
-
-.video-container video {
-  width: inherit;
-}
-
-@media only screen and (max-width: 575px) {
-  .mobile-hide {
-    display: none;
-  }
-  
-  .mobile-show {
-    display: inherit;
-  }
+p {
+  color: rgb(74, 74, 74);
+  margin-bottom: 2.5rem;
 }
