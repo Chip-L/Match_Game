@@ -5,8 +5,11 @@ var MatchGame = {};
   Renders a 4x4 board of cards.
 */
 $(document).ready( function () {
-  MatchGame.renderCards(MatchGame.generateCardValues(), $('#game'));
-})
+  var $game = $('#game');
+  var values = MatchGame.generateCardValues();
+  MatchGame.renderCards(values, $game);
+});
+
 /*
   Generates and returns an array of matching card values.
  */
@@ -62,11 +65,6 @@ MatchGame.renderCards = function(cardValues, $game) {
     })
 
     $game.append($card);
-
-    // Force next columns to break to new line every 4 cards
-    if( ((i + 1) % 4) === 0) {
-      $game.append('<div class="w-100"></div>');
-    }
   }
 };
 
