@@ -7,13 +7,14 @@ var MatchGame = {};
 $(document).ready( function () {
   var $game = $('#game');
   var values = MatchGame.generateCardValues();
+  var clickCount = 0;
+
   MatchGame.renderCards(values, $game);
 });
 
 /*
   Generates and returns an array of matching card values.
- */
-
+*/
 MatchGame.generateCardValues = function () {
   var arrOrdered = [],
       arrRandom = [];
@@ -28,7 +29,7 @@ MatchGame.generateCardValues = function () {
     arrRandom.push(arrOrdered[index]);
     arrOrdered.splice(index, 1);
   }
-  console.log(arrRandom);
+  // console.log(arrRandom);
   return(arrRandom);
 };
 
@@ -36,7 +37,6 @@ MatchGame.generateCardValues = function () {
   Converts card values to jQuery card objects and adds them to the supplied game
   object.
 */
-
 MatchGame.renderCards = function(cardValues, $game) {
   var colorValue = [
     'hsl(25, 85%, 65%)',
@@ -76,11 +76,13 @@ MatchGame.renderCards = function(cardValues, $game) {
 MatchGame.flipCard = function($card, $game) {
   var card0Index = $game.data('matchCardsIdx');
 
-  // check if already selected or already flipped
+  // check if already selected or already flipped (don't count click)
   if (($card.data('index') === card0Index) || $card.data('flipped')) {
     return;
   }
 
+  MatchGame.clickCount += 1;
+  console.log("clickCount: " + MatchGame.clickCount);
   // change color for flip
   MatchGame.showCard($card);
 
