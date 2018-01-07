@@ -1,4 +1,6 @@
-var MatchGame = {};
+var MatchGame = {
+  clickCount: 0,
+};
 
 /*
   Sets up a new game after HTML document has loaded.
@@ -7,7 +9,6 @@ var MatchGame = {};
 $(document).ready( function () {
   var $game = $('#game');
   var values = MatchGame.generateCardValues();
-  var clickCount = 0;
 
   MatchGame.renderCards(values, $game);
 });
@@ -83,6 +84,7 @@ MatchGame.flipCard = function($card, $game) {
 
   MatchGame.clickCount += 1;
   console.log("clickCount: " + MatchGame.clickCount);
+
   // change color for flip
   MatchGame.showCard($card);
 
@@ -90,12 +92,12 @@ MatchGame.flipCard = function($card, $game) {
   if (card0Index === null) {
     $game.data('matchCardsIdx', $card.data('index'));
 
-    console.log("$game.data('matchCardsIdx') = " + $game.data('matchCardsIdx'));
+    // console.log("$game.data('matchCardsIdx') = " + $game.data('matchCardsIdx'));
 
   } else {
     var $card0 = $('.card').eq(card0Index);
 
-    console.log('card0: ' + $card0.data('value') + '\ncard:  ' + $card.data('value'));
+    // console.log('card0: ' + $card0.data('value') + '\ncard:  ' + $card.data('value'));
 
     if ($card0.data('value') === $card.data('value')) {
         MatchGame.showMatchedCard($card0);
