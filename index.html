@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Match Game</title>
-
   <!-- Required meta tags -->
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Match Game</title>
 
   <!-- favicon -->
   <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
@@ -13,8 +14,8 @@
 
   <!-- reset the CSS to get rid of browser overwrites -->
   <link
+    rel="stylesheet"
   	href="./resources/css/reset.css"
-  	rel="stylesheet"
   	type="text/css">
   <!-- Bootstrap CSS -->
   <link
@@ -24,15 +25,15 @@
     crossorigin="anonymous">
 	<!-- Main CSS file -->
   <link
-    href="./resources/css/style.css"
     rel="stylesheet"
+    href="./resources/css/style.css"
     type="text/css">
 </head>
 <body>
   <div class="container">
     <div class="row">
       <!-- Insturctions -->
-      <div class="col-lg-3 col-xs-12">
+      <div class="col-md-3 col-xs-12">
         <h1>Match Game</h1>
         <h2>Rules</h2>
         <p>Click on a card to reveal the number on the other side. Click on a second card to try and find a match to the first. If you succeed, the pair will be removed from play. If not, try again!</p>
@@ -42,11 +43,8 @@
       </div>
 
       <!-- game board -->
-      <div class="col-lg-9 col-xs-12">
-        <div id="game" class="row">
+      <div id="game" class="col-md-9 col-xs-12">
           <!-- cards will be added programatically -->
-        </div>
-        <!-- /game board row -->
       </div>
       <!-- /game board column -->
     </div>

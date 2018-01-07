@@ -29,30 +29,36 @@
 /* change from normal HTML to body so styles aren't overridden by bootstrap */
 body {
   font-family: "Work Sans", sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   background-color: rgb(255, 242,  242);
+  color: rgb(32, 64, 86);
 }
 
 /******************************** Insturctions ********************************/
 
 .container {
-  margin-top: 5.25rem;
+  margin-top: 0;
+}
+
+@media screen and (min-width: 992px) {
+  .container {
+    margin-top: 5.25rem;
+  }
 }
 
 h1 {
   font-weight: bold;
   font-size: 2.5rem;
-  color: rgb(32, 64, 86);
   margin-bottom: 3rem;
 }
 
 h2 {
   font-size: 1rem;
   font-weight: bold;
-  color: rgb(32, 64, 86);
 }
 
 p {
+  font-size: 1rem;
   color: rgb(74, 74, 74);
   margin-bottom: 2.5rem;
 }
@@ -63,10 +69,9 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-grow: 1;
 
   height: 12.5rem;
-  max-width: 12.5rem;
+  /* max-width: 12.5rem; */
   border: 4px solid #ffffff;
   border-radius: 8px;
   background-color: rgb(32, 64, 86);
