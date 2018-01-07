@@ -83,6 +83,17 @@ p {
   padding-top: 0;
 }
 
+/* Icon when the collapsible content is shown */
+.panel-title a:after {
+  font-family: "Glyphicons Halflings";
+  content: "\e114";
+  float: right;
+}
+
+/* Icon when the collapsible content is hidden */
+.panel-title a.collapsed:after {
+    content: "\e080";
+}
 /********************************* Game Board *********************************/
 
 .card {
