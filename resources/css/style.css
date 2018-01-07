@@ -63,6 +63,26 @@ p {
   margin-bottom: 2.5rem;
 }
 
+.panel-body p:last-child {
+  margin-bottom: 0;
+}
+
+.panel {
+  margin-bottom: 2.5rem;
+}
+
+.panel > .panel-heading {
+  background-image: none;
+  background-color: #F1E8E8;
+}
+
+.panel-default>.panel-heading+.panel-collapse>.panel-body {
+  background-image: none;
+  background-color: #F1E8E8;
+  border-top: none;
+  padding-top: 0;
+}
+
 /********************************* Game Board *********************************/
 
 .card {
