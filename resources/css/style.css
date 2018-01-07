@@ -25,8 +25,6 @@
 }
 
 /****************************** Universal Styles ******************************/
-
-/* change from normal HTML to body so styles aren't overridden by bootstrap */
 html {
   font-family: "Work Sans", sans-serif;
   font-size: 14px;
@@ -101,15 +99,11 @@ p {
     margin-top: 5.25rem;
   }
 
-  /* Icon when the collapsible content is shown */
+  /* Hide icon when the collapsible content is shown
+     Icon when the collapsible content is hidden will still show */
   .panel-title a:after {
     content: "";
   }
-
-  /* Icon when the collapsible content is hidden */
-  /* .panel-title a.collapsed:after {
-    content: "";
-  } */
 }
 
 /********************************* Game Board *********************************/
