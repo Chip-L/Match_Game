@@ -40,12 +40,6 @@ body {
   margin-top: 0;
 }
 
-@media screen and (min-width: 992px) {
-  .container {
-    margin-top: 5.25rem;
-  }
-}
-
 h1 {
   font-weight: bold;
   font-size: 2.5rem;
@@ -83,17 +77,28 @@ p {
   padding-top: 0;
 }
 
-/* Icon when the collapsible content is shown */
-.panel-title a:after {
-  font-family: "Glyphicons Halflings";
-  content: "\e114";
-  float: right;
+.panel-title a {
+  text-decoration: none;
 }
 
-/* Icon when the collapsible content is hidden */
-.panel-title a.collapsed:after {
-    content: "\e080";
+@media screen and (min-width: 992px) {
+  .container {
+    margin-top: 5.25rem;
+  }
+
+  /* Icon when the collapsible content is shown */
+  .panel-title a:after {
+    float: right;
+    font-family: "Glyphicons Halflings";
+    content: "";
+  }
+
+  /* Icon when the collapsible content is hidden */
+  .panel-title a.collapsed:after {
+      content: "";
+  }
 }
+
 /********************************* Game Board *********************************/
 
 .card {
