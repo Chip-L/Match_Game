@@ -27,9 +27,12 @@
 /****************************** Universal Styles ******************************/
 
 /* change from normal HTML to body so styles aren't overridden by bootstrap */
-body {
+html {
   font-family: "Work Sans", sans-serif;
-  font-size: 16px;
+  font-size: 14px;
+}
+
+body {
   background-color: rgb(255, 242,  242);
   color: rgb(32, 64, 86);
 }
@@ -81,6 +84,18 @@ p {
   text-decoration: none;
 }
 
+/* Icon when the collapsible content is shown */
+.panel-title a:after {
+  float: right;
+  font-family: "Glyphicons Halflings";
+  content: "\e114";
+}
+
+/* Icon when the collapsible content is hidden */
+.panel-title a.collapsed:after {
+  content: "\e080";
+}
+
 @media screen and (min-width: 992px) {
   .container {
     margin-top: 5.25rem;
@@ -88,15 +103,13 @@ p {
 
   /* Icon when the collapsible content is shown */
   .panel-title a:after {
-    float: right;
-    font-family: "Glyphicons Halflings";
     content: "";
   }
 
   /* Icon when the collapsible content is hidden */
-  .panel-title a.collapsed:after {
-      content: "";
-  }
+  /* .panel-title a.collapsed:after {
+    content: "";
+  } */
 }
 
 /********************************* Game Board *********************************/
