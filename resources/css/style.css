@@ -103,7 +103,7 @@ a:visited {
     margin-top: 5.25rem;
   }
 
-  h1 {
+  .container h1 {
     margin-bottom: 3rem;
   }
 
@@ -132,3 +132,69 @@ a:visited {
 
   cursor: pointer;
 }
+
+/****************************** playAgain Dialog ******************************/
+
+.modal-content {
+  background-image: none;
+  background-color: #F1E8E8;
+}
+
+.modal-header {
+  border: none;
+  text-align: center;
+}
+
+.modal-body {
+  text-align: center;
+}
+
+.modal-footer {
+  border: none;
+  text-align: center;
+}
+
+.btn-info {
+  background-color: #9FAB87;
+  border-color: #B4B38B;
+}
+
+.btn-info:hover,
+.btn-info:active {
+  background-color: #C9BB90;
+  border-color: #D4D1A9;
+  outline: none;
+}
+
+.btn-info:focus {
+  background-color: #C9BB90;
+  border-color: #DFFEE0;
+  outline: none;
+}
+
+.btn-info.active.focus,
+.btn-info.active:focus,
+.btn-info.active:hover,
+.btn-info:active.focus,
+.btn-info:active:focus,
+.btn-info:active:hover {
+  background-color: #D4D1A9;
+  border-color: #DFFEE0;
+  outline: none;
+}
+
+/*
+greens (from palletron):
+normal: #9FAB87/#B4B38B
+hover: #C9BB90/#D4D1A9
+active: #C9BB90/#D4D1A9
+focus: #C9BB90/#DFFEE0
+other: #D4D1A9/#DFFEE0
+
+blues (bootstrap original colors):
+normal: #5bc0de/#46b8da
+hover: #31b0d5/#269abc
+active: #31b0d5/#269abc
+focus: #31b0d5/#1b6d85
+other: #269abc/#1b6d85
+*/

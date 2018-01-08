@@ -125,7 +125,7 @@ MatchGame.flipCard = function($card, $game) {
   checks the number of flipped cards. If they are all flipped  then it will open the playAgain modal dialog.
 */
 MatchGame.checkWin = function ($game) {
-  console.log("checkWin");
+  // console.log("checkWin");
 
   var flippedCount = 0;
 
@@ -133,12 +133,12 @@ MatchGame.checkWin = function ($game) {
     if ($(this).data('isFlipped')) {
       flippedCount++;
     } else {
-      // return false;
+      return false;
     }
   } );
 
-  if(flippedCount > 0) {
-  // if(flippedCount === 16) {
+  // if(flippedCount > 0) {
+  if(flippedCount === 16) {
     var response = false;
     setTimeout( function () {
       $('#playAgain .modal-body').empty().append(
@@ -164,7 +164,6 @@ MatchGame.showCard = function ($card) {
 MatchGame.showMatchedCard = function ($card) {
   $card.css('background-color', 'rgb(153, 153, 153)')
        .css('color', 'rgb(204, 204, 204)');
-  console.log('showMatchedCard = done');
 };
 
 /*
