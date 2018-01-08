@@ -122,6 +122,7 @@ MatchGame.flipCard = function($card, $game) {
 };
 
 /*
+  checks the number of flipped cards. If they are all flipped  then it will open the playAgain modal dialog.
 */
 MatchGame.checkWin = function ($game) {
   console.log("checkWin");
@@ -132,33 +133,18 @@ MatchGame.checkWin = function ($game) {
     if ($(this).data('isFlipped')) {
       flippedCount++;
     } else {
-      return false;
+      // return false;
     }
-    console.log($(this).data('isFlipped'));
   } );
 
-  if(flippedCount === 16) {
+  if(flippedCount > 0) {
+  // if(flippedCount === 16) {
     var response = false;
     setTimeout( function () {
-      response = confirm(
-        'It took you ' + MatchGame.clickCount + ' clicks to beat the game.<br>' +
-        '<br>' +
-        'Would you like to play again?'
+      $('#playAgain .modal-body').empty().append(
+        '<h2>It took you ' + MatchGame.clickCount + ' clicks to beat the game.</h2>'
       );
-
-      if (response == true) {
-        MatchGame.playGame();
-      } else {
-        alert(
-          'Thank you for playing \n' +
-          '\n' +
-          'Have a nice day <br>' +
-          '\n' +
-          '\n' +
-          'Press f5 to play again'
-        );
-        console.log( "You pressed Cancel!");
-      }
+      $('#playAgain').modal('show');
     }, 500);
   }
 } // end MatchGame.checkWin
