@@ -90,7 +90,7 @@ MatchGame.flipCard = function($card, $game) {
   }
 
   MatchGame.clickCount += 1;
-  console.log("clickCount: " + MatchGame.clickCount);
+  // console.log("clickCount: " + MatchGame.clickCount);
 
   // change color for flip
   MatchGame.showCard($card);
@@ -107,6 +107,8 @@ MatchGame.flipCard = function($card, $game) {
     if ($card0.data('value') === $card.data('value')) {
         MatchGame.showMatchedCard($card0);
         MatchGame.showMatchedCard($card);
+
+        MatchGame.checkWin($game);
     } else {
       setTimeout(function () {
         MatchGame.showResetCard($card0);
@@ -118,6 +120,41 @@ MatchGame.flipCard = function($card, $game) {
     $game.data('matchCardsIdx', null);
   }
 };
+
+/*
+*/
+MatchGame.checkWin = function ($game) {
+  console.log("checkWin");
+
+  var flippedCount = 0;
+
+  $('.card').each( function () {
+    if ($(this).data('isFlipped')) {
+      flippedCount++;
+    } else {
+      return false;
+    }
+    console.log($(this).data('isFlipped'));
+  } );
+
+  if(flippedCount === 16) {
+    var response = false;
+    setTimeout( function () {
+      response = confirm(
+        'It took you ' + MatchGame.clickCount + ' clicks to beat the game.<br>' +
+        '<br>' +
+        'Would you like to play again?'
+        );
+      }, 500
+    )
+
+    if (response == true) {
+      MatchGame.playGame();
+    } else {
+      console.log( "You pressed Cancel!");
+    }
+  }
+} // end MatchGame.checkWin
 
 /*
   Changes the color and attributes of a card being shown (not matched - yet)
@@ -134,6 +171,7 @@ MatchGame.showCard = function ($card) {
 MatchGame.showMatchedCard = function ($card) {
   $card.css('background-color', 'rgb(153, 153, 153)')
        .css('color', 'rgb(204, 204, 204)');
+  console.log('showMatchedCard = done');
 };
 
 /*
