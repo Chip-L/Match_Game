@@ -44,7 +44,6 @@ body {
 h1 {
   font-weight: bold;
   font-size: 2.5rem;
-  margin-bottom: 3rem;
 }
 
 h2 {
@@ -62,8 +61,8 @@ p {
   margin-bottom: 0;
 }
 
-.panel {
-  margin-bottom: 2.5rem;
+.panel-group {
+  margin: 1.5rem 0;
 }
 
 .panel > .panel-heading {
@@ -78,8 +77,13 @@ p {
   padding-top: 0;
 }
 
-.panel-title a {
+a,
+a:active,
+a:hover,
+a:focus,
+a:visited {
   text-decoration: none;
+  outline: none;
 }
 
 /* Icon when the collapsible content is shown */
@@ -99,6 +103,10 @@ p {
     margin-top: 5.25rem;
   }
 
+  h1 {
+    margin-bottom: 3rem;
+  }
+
   /* Hide icon when the collapsible content is shown
      Icon when the collapsible content is hidden will still show */
   .panel-title a:after {
@@ -114,7 +122,6 @@ p {
   align-items: center;
 
   height: 12.5rem;
-  /* max-width: 12.5rem; */
   border: 4px solid #ffffff;
   border-radius: 8px;
   background-color: rgb(32, 64, 86);
