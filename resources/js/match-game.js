@@ -85,7 +85,7 @@ MatchGame.flipCard = function($card, $game) {
   var card0Index = $game.data('matchCardsIdx');
 
   // check if already selected or already flipped (don't count click)
-  if (($card.data('index') === card0Index) || $card.data('flipped')) {
+  if (($card.data('index') === card0Index) || $card.data('isFlipped')) {
     return;
   }
 
@@ -144,15 +144,22 @@ MatchGame.checkWin = function ($game) {
         'It took you ' + MatchGame.clickCount + ' clicks to beat the game.<br>' +
         '<br>' +
         'Would you like to play again?'
-        );
-      }, 500
-    )
+      );
 
-    if (response == true) {
-      MatchGame.playGame();
-    } else {
-      console.log( "You pressed Cancel!");
-    }
+      if (response == true) {
+        MatchGame.playGame();
+      } else {
+        alert(
+          'Thank you for playing \n' +
+          '\n' +
+          'Have a nice day <br>' +
+          '\n' +
+          '\n' +
+          'Press f5 to play again'
+        );
+        console.log( "You pressed Cancel!");
+      }
+    }, 500);
   }
 } // end MatchGame.checkWin
 
