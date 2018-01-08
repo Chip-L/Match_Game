@@ -1,17 +1,25 @@
-var MatchGame = {
-  clickCount: 0,
-};
+var MatchGame = {};
+
+MatchGame.clickCount = 0;
 
 /*
   Sets up a new game after HTML document has loaded.
   Renders a 4x4 board of cards.
 */
 $(document).ready( function () {
+  MatchGame.playGame();
+});
+
+/*
+  Executes the game. Sets up the board and resets the clickCount
+*/
+MatchGame.playGame = function () {
   var $game = $('#game');
+  MatchGame.clickCount = 0;
   var values = MatchGame.generateCardValues();
 
   MatchGame.renderCards(values, $game);
-});
+}
 
 /*
   Generates and returns an array of matching card values.
@@ -73,7 +81,6 @@ MatchGame.renderCards = function(cardValues, $game) {
   Flips over a given card and checks to see if two cards are flipped over.
   Updates styles on flipped cards depending whether they are a match or not.
  */
-
 MatchGame.flipCard = function($card, $game) {
   var card0Index = $game.data('matchCardsIdx');
 
