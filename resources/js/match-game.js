@@ -4,14 +4,14 @@ MatchGame.clickCount = 0;
 
 /*
   Sets up a new game after HTML document has loaded.
-  Renders a 4x4 board of cards.
 */
 $(document).ready( function () {
   MatchGame.playGame();
 });
 
 /*
-  Executes the game. Sets up the board and resets the clickCount
+  Executes the game. Sets up the board and resets the clickCount.
+  Renders a 4x4 board of cards.
 */
 MatchGame.playGame = function () {
   var $game = $('#game');
@@ -65,20 +65,20 @@ MatchGame.renderCards = function(cardValues, $game) {
     var $card = $('<div class="col-xs-3 card"></div>');
     $card.data('index', i);
     $card.data('value', cardValues[i]);
-    $card.data('flipped', false);
     $card.data('color', colorValue[ cardValues[i] - 1 ]);
-    $card.click(function (event) {
-      $card = $(this);
-      $game =$(this).parent();
-      MatchGame.flipCard($card, $game);
-    })
+    $card.data('isFlipped', false);
 
     $game.append($card);
   }
+
+  // appends to ALL cards at the same time
+  $('.card').click(function (event) {
+    MatchGame.flipCard($(this), $game);
+  })
 };
 
 /*
-  Flips over a given card and checks to see if two cards are flipped over.
+  Flips over a given card and checks to see if two cards are isFlipped over.
   Updates styles on flipped cards depending whether they are a match or not.
  */
 MatchGame.flipCard = function($card, $game) {
@@ -100,12 +100,10 @@ MatchGame.flipCard = function($card, $game) {
     $game.data('matchCardsIdx', $card.data('index'));
 
     // console.log("$game.data('matchCardsIdx') = " + $game.data('matchCardsIdx'));
-
   } else {
     var $card0 = $('.card').eq(card0Index);
 
     // console.log('card0: ' + $card0.data('value') + '\ncard:  ' + $card.data('value'));
-
     if ($card0.data('value') === $card.data('value')) {
         MatchGame.showMatchedCard($card0);
         MatchGame.showMatchedCard($card);
@@ -125,24 +123,24 @@ MatchGame.flipCard = function($card, $game) {
   Changes the color and attributes of a card being shown (not matched - yet)
 */
 MatchGame.showCard = function ($card) {
-  $card.css('background-color', $card.data('color'));
-  $card.text($card.data('value'));
-  $card.data('flipped', true);
+  $card.css('background-color', $card.data('color'))
+       .text($card.data('value'))
+       .data('isFlipped', true);
 };
 
 /*
   Changes the color and attributes of a that has been matched
 */
 MatchGame.showMatchedCard = function ($card) {
-  $card.css('background-color', 'rgb(153, 153, 153)');
-  $card.css('color', 'rgb(204, 204, 204)');
+  $card.css('background-color', 'rgb(153, 153, 153)')
+       .css('color', 'rgb(204, 204, 204)');
 };
 
 /*
   Changes the color and attributes of a that has been NOT matched
 */
 MatchGame.showResetCard = function ($card) {
-  $card.css('background-color', 'rgb(32, 64, 86)');
-  $card.empty();
-  $card.data('flipped', false);
+  $card.css('background-color', 'rgb(32, 64, 86)')
+       .text('')
+       .data('isFlipped', false);
 };
