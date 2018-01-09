@@ -150,7 +150,7 @@ MatchGame.checkWin = function ($game) {
 
     setTimeout( function () {
       $('#playAgain .modal-body').empty().append(
-        '<h2>It took you ' + MatchGame.clickCount + ' clicks to beat the game.</h2>'
+        '<h2>It took you ' + MatchGame.clickCount + ' clicks in ' + $('#timer').html() + ' amount of time to beat the game.</h2>'
       );
       $('#playAgain').modal('show');
     }, 500);
