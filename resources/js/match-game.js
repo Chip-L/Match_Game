@@ -15,7 +15,10 @@ $(document).ready( function () {
 */
 MatchGame.playGame = function () {
   var $game = $('#game');
+
   MatchGame.clickCount = 0;
+  Timer.resetTimer();
+
   var values = MatchGame.generateCardValues();
 
   MatchGame.renderCards(values, $game);
@@ -84,6 +87,10 @@ MatchGame.renderCards = function(cardValues, $game) {
 MatchGame.flipCard = function($card, $game) {
   var card0Index = $game.data('matchCardsIdx');
 
+  if(MatchGame.clickCount === 0) {
+    Timer.startTimer();
+  }
+
   // check if already selected or already flipped (don't count click)
   if (($card.data('index') === card0Index) || $card.data('isFlipped')) {
     return;
@@ -139,7 +146,8 @@ MatchGame.checkWin = function ($game) {
 
   // if(flippedCount > 0) {
   if(flippedCount === 16) {
-    var response = false;
+    Timer.stopTimer();
+
     setTimeout( function () {
       $('#playAgain .modal-body').empty().append(
         '<h2>It took you ' + MatchGame.clickCount + ' clicks to beat the game.</h2>'
