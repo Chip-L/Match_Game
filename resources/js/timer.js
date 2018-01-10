@@ -7,6 +7,7 @@
 var Timer = {};
 
 Timer.startTime = new Date;
+Timer.totalSeconds = 0;
 Timer.clock = ""; // stors the actual timer so that it can be stopped
 
 /*
@@ -14,9 +15,10 @@ Timer.clock = ""; // stors the actual timer so that it can be stopped
 */
 Timer.startTimer = function() {
   Timer.startTime = new Date;
+  Timer.totalSeconds = 0;
 
   Timer.clock = setInterval(function() {
-    Timer.getDisplay(Math.round(((new Date - Timer.startTime) / 1000), 0));
+    Timer.getTimerDisplay(Math.round(((new Date - Timer.startTime) / 1000), 0));
   }, 1000);
 }
 
@@ -31,34 +33,45 @@ Timer.stopTimer = function() {
   This resets the time by calling the time display function with no time (everything ends up as 0s)
 */
 Timer.resetTimer = function() {
-  Timer.getDisplay(0);
+  Timer.getTimerDisplay(0);
 };
 
 /*
   utility function to pad a 0 on the clock display
 */
-Timer.pretty_time_string = function(num) {
+Timer.prettyTimeString = function(num) {
   return ( num < 10 ? "0" : "" ) + num;
 };
 
 /*
-  Displays the time. It takes an input of seconds
+  Displays the time in hh:mm:ss format. It takes an input of seconds
 */
-Timer.getDisplay = function(total_seconds) {
+Timer.getTimerDisplay = function(totalSeconds) {
+  Timer.totalSeconds = totalSeconds;
 
-  var hours = Math.floor(total_seconds / 3600);
-  total_seconds = total_seconds % 3600;
+  var timeObj = Timer.getTimeObj(totalSeconds);
 
-  var minutes = Math.floor(total_seconds / 60);
-  total_seconds = total_seconds % 60;
-
-  var seconds = Math.floor(total_seconds);
-
-  hours = Timer.pretty_time_string(hours);
-  minutes = Timer.pretty_time_string(minutes);
-  seconds = Timer.pretty_time_string(seconds);
+  hours = Timer.prettyTimeString(timeObj.hours);
+  minutes = Timer.prettyTimeString(timeObj.minutes);
+  seconds = Timer.prettyTimeString(timeObj.seconds);
 
   var currentTimeString = hours + ":" + minutes + ":" + seconds;
 
   $('#timer').text(currentTimeString);
+};
+
+/*
+  Creates a time object. This way the function to create the hours, minutes, and seconds can be reused and displayed in multiple formats.
+*/
+Timer.getTimeObj = function(totalSeconds) {
+
+  var hours = Math.floor(totalSeconds / 3600);
+  totalSeconds = totalSeconds % 3600;
+
+  var minutes = Math.floor(totalSeconds / 60);
+  totalSeconds = totalSeconds % 60;
+
+  var seconds = Math.floor(totalSeconds);
+
+  return({hours:hours, minutes:minutes, seconds:seconds})
 };
