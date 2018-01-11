@@ -19,11 +19,11 @@ Timer.startTimer = function() {
 
   Timer.clock = setInterval(function() {
     Timer.getTimerDisplay(Math.round(((new Date - Timer.startTime) / 1000), 0));
-  }, 1000);
+  }, 500);
 }
 
 /*
-  This function stops the timer
+  This function stops the timer. Note: totalSeconds is still available.
 */
 Timer.stopTimer = function() {
   clearInterval(Timer.clock);
@@ -49,7 +49,7 @@ Timer.prettyTimeString = function(num) {
 Timer.getTimerDisplay = function(totalSeconds) {
   Timer.totalSeconds = totalSeconds;
 
-  var timeObj = Timer.getTimeObj(totalSeconds);
+  var timeObj = Timer.getTimeObj();
 
   hours = Timer.prettyTimeString(timeObj.hours);
   minutes = Timer.prettyTimeString(timeObj.minutes);
@@ -61,9 +61,10 @@ Timer.getTimerDisplay = function(totalSeconds) {
 };
 
 /*
-  Creates a time object. This way the function to create the hours, minutes, and seconds can be reused and displayed in multiple formats.
+  Creates a time object out of the Timer.totalSeconds. This way the function to create the hours, minutes, and seconds can be reused and displayed in multiple formats.
 */
-Timer.getTimeObj = function(totalSeconds) {
+Timer.getTimeObj = function() {
+  totalSeconds = Timer.totalSeconds;
 
   var hours = Math.floor(totalSeconds / 3600);
   totalSeconds = totalSeconds % 3600;

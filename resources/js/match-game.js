@@ -149,9 +149,22 @@ MatchGame.checkWin = function ($game) {
     Timer.stopTimer();
 
     setTimeout( function () {
-      $('#playAgain .modal-body').empty().append(
-        '<h2>It took you ' + MatchGame.clickCount + ' clicks in ' + $('#timer').html() + ' amount of time to beat the game.</h2>'
-      );
+      var t = Timer.getTimeObj();
+
+      var displayText =
+        '<h2>It took you ' + MatchGame.clickCount + ' clicks in ';
+
+      if(t.hours > 0) {
+        displayText += t.hours + ' hours, ';
+      }
+      if((t.minutes > 0) || (t.hours > 0)) {
+        displayText += t.minutes + ' minutes and ';
+      }
+      displayText += t.seconds + ' seconds ';
+
+      displayText += ' to beat the game.</h2>';
+
+      $('#playAgain .modal-body').empty().append(displayText);
       $('#playAgain').modal('show');
     }, 500);
   }
