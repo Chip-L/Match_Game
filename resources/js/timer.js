@@ -1,14 +1,14 @@
 /*
   Much of this came from https://stackoverflow.com/questions/2604450/how-to-create-a-jquery-clock-timer
 
-  The time works off of the date function. This is the most accurate way to avoid drift. setInterval does not gauruntee a specific time, this means the timer can jumb. By using date, you are taking the time from an actual clock. It will always be correct. Again, it can jump.
+  The time works off of the date function. This is the most accurate way to avoid drift. setInterval does not gauruntee a specific time, this means the timer can jump. By using date, you are taking the time from an actual clock. It will always be correct. Again, it can jump.
 */
 
 var Timer = {};
 
 Timer.startTime = new Date;
 Timer.totalSeconds = 0;
-Timer.clock = ""; // stors the actual timer so that it can be stopped
+Timer.clock = ""; // stores the actual timer so that it can be stopped
 
 /*
   The function to start keeping track of time
