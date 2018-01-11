@@ -9,6 +9,7 @@ Recommended to do list:
   * add fireworks to win screen
 * Only allow two cards to be visible at a time (currently the setTimeout allows users to click really quickly and see a few)
 * Allow user to select from multiple board sizes
+  * adjust font size to keep cards square
 * Change card values to non-number values (images)
 * Add score or time:
   * ~~clicks~~

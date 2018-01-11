@@ -70,11 +70,14 @@ p {
   background-color: #F1E8E8;
 }
 
-.panel-default>.panel-heading+.panel-collapse>.panel-body {
+.panel-body {
   background-image: none;
   background-color: #F1E8E8;
+}
+
+.panel-default>.panel-heading+.panel-collapse>.panel-body {
   border-top: none;
-  padding-top: 0;
+  padding-top: 0;  
 }
 
 a,
