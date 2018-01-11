@@ -12,7 +12,7 @@ Recommended to do list:
 * Change card values to non-number values (images)
 * Add score or time:
   * ~~clicks~~
-  * timer
+  * ~~timer~~
 * Add sound effects
   * flipping
   * dealing
