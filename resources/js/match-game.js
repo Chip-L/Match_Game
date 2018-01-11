@@ -3,13 +3,6 @@ var MatchGame = {};
 MatchGame.clickCount = 0;
 
 /*
-  Sets up a new game after HTML document has loaded.
-*/
-$(document).ready( function () {
-  MatchGame.playGame();
-});
-
-/*
   Executes the game. Sets up the board and resets the clickCount.
   Renders a 4x4 board of cards.
 */
@@ -183,8 +176,11 @@ MatchGame.showCard = function ($card) {
   Changes the color and attributes of a that has been matched
 */
 MatchGame.showMatchedCard = function ($card) {
-  $card.css('background-color', 'rgb(153, 153, 153)')
-       .css('color', 'rgb(204, 204, 204)');
+  var newCss = {
+    'background-color': 'rgb(153, 153, 153)',
+    'color':  'rgb(204, 204, 204)'
+  };
+  $card.css(newCss);
 };
 
 /*
