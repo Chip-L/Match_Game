@@ -35,7 +35,7 @@ body {
   color: rgb(32, 64, 86);
 }
 
-/******************************** Insturctions ********************************/
+/******************************** Instructions ********************************/
 
 .container {
   margin-top: 0;
@@ -100,7 +100,8 @@ a:visited {
 
 @media screen and (min-width: 992px) {
   .container {
-    margin-top: 5.25rem;
+    margin-top: 2.125rem;
+    margin-bottom: 2.125rem;
   }
 
   .container h1 {
