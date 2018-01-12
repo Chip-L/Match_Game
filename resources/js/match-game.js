@@ -55,11 +55,11 @@ MatchGame.renderCards = function(cardValues, $game) {
   ];
 
   $game.empty();
-  $game.data('matchCardsIdx', null); // null = not set
+  $game.data('flippedCards', []);
 
   for (var i = 0; i < cardValues.length; i++) {
     var $card = $('<div class="col-xs-3 card"></div>');
-    $card.data('index', i);
+    // $card.data('index', i);
     $card.data('value', cardValues[i]);
     $card.data('color', colorValue[ cardValues[i] - 1 ]);
     $card.data('isFlipped', false);
@@ -76,49 +76,40 @@ MatchGame.renderCards = function(cardValues, $game) {
 /*
   Flips over a given card and checks to see if two cards are isFlipped over.
   Updates styles on flipped cards depending whether they are a match or not.
- */
-MatchGame.flipCard = function($card, $game) {
-  var card0Index = $game.data('matchCardsIdx');
+*/
+MatchGame.flipCard = function ($card, $game) {
+  var flippedCards = $game.data('flippedCards');
 
-  if(MatchGame.clickCount === 0) {
+  if (MatchGame.clickCount === 0) {
     Timer.startTimer();
   }
 
-  // check if already selected or already flipped (don't count click)
-  if (($card.data('index') === card0Index) || $card.data('isFlipped')) {
+  if ($card.data('isFlipped')) {
     return;
   }
 
-  MatchGame.clickCount += 1;
-  // console.log("clickCount: " + MatchGame.clickCount);
+  MatchGame.clickCount++;
 
-  // change color for flip
+  // change color for flip and add to queue
   MatchGame.showCard($card);
+  flippedCards.push($card);
 
-  // check for match - if matchCardsIdx = null - it is not set, set if it is not null, then go and reteive the other card and check the values.
-  if (card0Index === null) {
-    $game.data('matchCardsIdx', $card.data('index'));
+  if (flippedCards.length === 2) {
+    if (flippedCards[0].data('value') === flippedCards[1].data('value')) {
+      MatchGame.showMatchedCard(flippedCards[0]);
+      MatchGame.showMatchedCard(flippedCards[1]);
 
-    // console.log("$game.data('matchCardsIdx') = " + $game.data('matchCardsIdx'));
-  } else {
-    var $card0 = $('.card').eq(card0Index);
-
-    // console.log('card0: ' + $card0.data('value') + '\ncard:  ' + $card.data('value'));
-    if ($card0.data('value') === $card.data('value')) {
-        MatchGame.showMatchedCard($card0);
-        MatchGame.showMatchedCard($card);
-
-        MatchGame.checkWin($game);
+      MatchGame.checkWin($game);
     } else {
-      setTimeout(function () {
-        MatchGame.showResetCard($card0);
-        MatchGame.showResetCard($card);
-      }, 350);
-    }
+      MatchGame.interval = setTimeout( function () {
+        MatchGame.showResetCard(flippedCards[0]);
+        MatchGame.showResetCard(flippedCards[1]);
+      }, 350 );
+    };
 
-    // reset matchCards
-    $game.data('matchCardsIdx', null);
-  }
+     // reset matchCards
+    $game.data('flippedCards', []);
+  };
 };
 
 /*
@@ -176,11 +167,11 @@ MatchGame.showCard = function ($card) {
   Changes the color and attributes of a that has been matched
 */
 MatchGame.showMatchedCard = function ($card) {
-  var newCss = {
+  var matchCss = {
     'background-color': 'rgb(153, 153, 153)',
     'color':  'rgb(204, 204, 204)'
   };
-  $card.css(newCss);
+  $card.css(matchCss);
 };
 
 /*
