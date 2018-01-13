@@ -8,21 +8,21 @@ To do list:
 - [x] ~~Make rules collapsible so they fit mobile better~~ (completed Jan 6, 2018)
 - [x] ~~* Indicate that the user won when all pairs have been found~~ (completed Jan 7, 2018)
 - [x] ~~* Add a "Restart Game" button~~ (completed Jan 7, 2018)
-  - [] add fireworks to win screen
-- ~~* Only allow two cards to be visible at a time (currently the setTimeout allows users to click really quickly and see a few)~~ (completed Jan 13, 2018)
-- \* Allow user to select from multiple board sizes
-  - adjust font size to keep cards square
-- * Change card values to non-number values (images)
-- ~~* Add score or time:~~
-  - ~~clicks~~ (completed Jan 7, 2018)
-  - ~~timer~~ (completed Jan 11, 2018)
-- \* Add sound effects
-  - flipping
-  - dealing
-- \* Add animations
-  - flipping
-  - dealing
-- Make WCAG 2.0 compliant
+  - [ ] add fireworks to win screen
+- [x] ~~* Only allow two cards to be visible at a time (currently the setTimeout allows users to click really quickly and see a few)~~ (completed Jan 13, 2018)
+- [ ] \* Allow user to select from multiple board sizes
+  - [ ] adjust font size to keep cards square
+- [ ] \* Change card values to non-number values (images)
+- [x] ~~* Add score or time:~~
+  - [x] ~~clicks~~ (completed Jan 7, 2018)
+  - [x] ~~timer~~ (completed Jan 11, 2018)
+- [ ] \* Add sound effects
+  - [ ] flipping
+  - [ ] dealing
+- [ ] \* Add animations
+  - [ ] flipping
+  - [ ] dealing
+- [ ] Make WCAG 2.0 compliant
 ###### * = recommended by Codecademy
 
 ## Clicks
