@@ -43,5 +43,9 @@ for (var i = flippedCards.length-1; i >= 0 ; i--) {
 ```
 Notice this counts down. This is so that the pop will work. There is no need to check if the card clicked is already flipped and in the array. This will be solved by the rest of the function. Because the card is reset and removed, then if the user clicks a card that is face up, it will just be flipped back over and re-added to the queue.
 
+This also allows a longer display length for when the cards if the player waits for the flipping of the card. (changed from 350ms to 500ms)
+
+Note: This works because objects (and arrays) are passed around by passing a copy of a reference. This is why the `flippedCards.push($card)` pushes on to the `$game.data('flippedCards')` array. This is also why when you do a `flippedCards = []`, the `$game.data('flippedCards')` array is not affected, and they actually seem to become separate variables at that point.
+
 ## Board size
 This shouldn't be that difficult. The design is the tough part. I'm thinking that this may require me to add a menu with a settings screen.

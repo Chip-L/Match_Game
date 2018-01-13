@@ -125,7 +125,7 @@ MatchGame.flipCard = function ($card, $game) {
 
         // reset matchCards
         $game.data('flippedCards', []);
-      }, 2000 );
+      }, 500 );
     };
   };
 };
