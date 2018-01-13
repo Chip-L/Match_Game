@@ -1,6 +1,7 @@
 var MatchGame = {};
 
 MatchGame.clickCount = 0;
+MatchGame.interval; // used to track the timeout function
 
 /*
   Executes the game. Sets up the board and resets the clickCount.
@@ -118,7 +119,7 @@ MatchGame.flipCard = function ($card, $game) {
       MatchGame.interval = setTimeout( function () {
         MatchGame.showResetCard(flippedCards[0]);
         MatchGame.showResetCard(flippedCards[1]);
-      }, 350 );
+      }, 2000 );
     };
 
      // reset matchCards
