@@ -115,15 +115,18 @@ MatchGame.flipCard = function ($card, $game) {
       MatchGame.showMatchedCard(flippedCards[1]);
 
       MatchGame.checkWin($game);
+
+      // reset matchCards
+      $game.data('flippedCards', []);
     } else {
       MatchGame.interval = setTimeout( function () {
         MatchGame.showResetCard(flippedCards[0]);
         MatchGame.showResetCard(flippedCards[1]);
       }, 2000 );
-    };
 
-     // reset matchCards
-    $game.data('flippedCards', []);
+      // reset matchCards
+      $game.data('flippedCards', []);
+    };
   };
 };
 
