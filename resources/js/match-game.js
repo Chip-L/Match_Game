@@ -80,6 +80,18 @@ MatchGame.renderCards = function(cardValues, $game) {
 MatchGame.flipCard = function ($card, $game) {
   var flippedCards = $game.data('flippedCards');
 
+  // check to see if more than 2 cars are shown, then hide the 2 cards.
+  if (flippedCards.length >= 2) {
+    clearTimeout(MatchGame.interval);
+
+    MatchGame.showResetCard(flippedCards[0]);
+    MatchGame.showResetCard(flippedCards[1]);
+
+    $game.data('flippedCards', []);
+    flippedCards = [];
+  }
+
+  // Check for start of game
   if (MatchGame.clickCount === 0) {
     Timer.startTimer();
   }
@@ -88,12 +100,14 @@ MatchGame.flipCard = function ($card, $game) {
     return;
   }
 
+  // add click to count
   MatchGame.clickCount++;
 
   // change color for flip and add to queue
   MatchGame.showCard($card);
   flippedCards.push($card);
 
+  // check if 2 cards match. If yes, leave cards flipped, if no, change them back to unflipped state
   if (flippedCards.length === 2) {
     if (flippedCards[0].data('value') === flippedCards[1].data('value')) {
       MatchGame.showMatchedCard(flippedCards[0]);
