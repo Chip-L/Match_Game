@@ -4,11 +4,11 @@ A matching game. Initially done for Cadecademy
 The Codecademy solution can be found in [./resources/Misc/solution](https://chip-l.github.io/Match_Game/resources/Misc/solution/index)
 
 To do list:
-- [x]~~* complete basic game from Codecademy instructions~~ (completed Dec 20, 2017)
-- ~~Make rules collapsible so they fit mobile better~~ (completed Jan 6, 2018)
-- ~~* Indicate that the user won when all pairs have been found~~ (completed Jan 7, 2018)
-- ~~* Add a "Restart Game" button~~ (completed Jan 7, 2018)
-  - add fireworks to win screen
+- [x] ~~* complete basic game from Codecademy instructions~~ (completed Dec 20, 2017)
+- [x] ~~Make rules collapsible so they fit mobile better~~ (completed Jan 6, 2018)
+- [x] ~~* Indicate that the user won when all pairs have been found~~ (completed Jan 7, 2018)
+- [x] ~~* Add a "Restart Game" button~~ (completed Jan 7, 2018)
+  - [] add fireworks to win screen
 - ~~* Only allow two cards to be visible at a time (currently the setTimeout allows users to click really quickly and see a few)~~ (completed Jan 13, 2018)
 - \* Allow user to select from multiple board sizes
   - adjust font size to keep cards square
