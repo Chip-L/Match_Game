@@ -60,7 +60,7 @@ MatchGame.renderCards = function(cardValues, $game) {
 
   for (var i = 0; i < cardValues.length; i++) {
     var $card = $('<div class="col-xs-3 card"></div>');
-    // $card.data('index', i);
+    $card.data('index', i);
     $card.data('value', cardValues[i]);
     $card.data('color', colorValue[ cardValues[i] - 1 ]);
     $card.data('isFlipped', false);
@@ -85,11 +85,11 @@ MatchGame.flipCard = function ($card, $game) {
   if (flippedCards.length >= 2) {
     clearTimeout(MatchGame.interval);
 
-    MatchGame.showResetCard(flippedCards[0]);
-    MatchGame.showResetCard(flippedCards[1]);
-
-    // $game.data('flippedCards', []);
-    flippedCards = [];
+    // flippedCards.length should never be more than 2, but just in case. Count down so that the pop will work.
+    for (var i = flippedCards.length-1; i >= 0 ; i--) {
+      MatchGame.showResetCard(flippedCards[i]);
+      flippedCards.pop();
+    };
   }
 
   // Check for start of game
