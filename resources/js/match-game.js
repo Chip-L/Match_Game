@@ -88,7 +88,7 @@ MatchGame.flipCard = function ($card, $game) {
     MatchGame.showResetCard(flippedCards[0]);
     MatchGame.showResetCard(flippedCards[1]);
 
-    $game.data('flippedCards', []);
+    // $game.data('flippedCards', []);
     flippedCards = [];
   }
 
@@ -122,7 +122,7 @@ MatchGame.flipCard = function ($card, $game) {
       MatchGame.interval = setTimeout( function () {
         MatchGame.showResetCard(flippedCards[0]);
         MatchGame.showResetCard(flippedCards[1]);
-        
+
         // reset matchCards
         $game.data('flippedCards', []);
       }, 2000 );
