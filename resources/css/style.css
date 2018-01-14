@@ -90,6 +90,7 @@ li a {
 /* .rules  */
 .fa-times {
   float: right;
+  font-size: 1.5rem;
 }
 
 .desktop-menu {
