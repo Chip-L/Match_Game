@@ -1,0 +1,204 @@
+/*********************************** Fonts  ***********************************/
+/************* Work Sans  *************/
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Work Sans'), local('WorkSans-Regular'), url(https://fonts.gstatic.com/s/worksans/v3/ElUAY9q6T0Ayx4zWzW63VFtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Work Sans Bold'), local('WorkSans-Bold'), url(https://fonts.gstatic.com/s/worksans/v3/4udXuXg54JlPEP5iKO5Amegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Work Sans Black'), local('WorkSans-Black'), url(https://fonts.gstatic.com/s/worksans/v3/Hjn0acvjHfjY_vAK9Uc6gugdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
+
+/****************************** Universal Styles ******************************/
+html {
+  font-family: "Work Sans", sans-serif;
+  font-size: 14px;
+}
+
+body {
+  background-color: rgb(255, 242,  242);
+  color: rgb(32, 64, 86);
+}
+
+/******************************** Instructions ********************************/
+
+.container {
+  margin-top: 0;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+p {
+  font-size: 1rem;
+  color: rgb(74, 74, 74);
+  margin-bottom: 2.5rem;
+}
+
+.panel-body p:last-child {
+  margin-bottom: 0;
+}
+
+.panel-group {
+  margin: 1.5rem 0;
+}
+
+.panel > .panel-heading {
+  background-image: none;
+  background-color: #F1E8E8;
+}
+
+.panel-body {
+  background-image: none;
+  background-color: #F1E8E8;
+}
+
+.panel-default>.panel-heading+.panel-collapse>.panel-body {
+  border-top: none;
+  padding-top: 0;  
+}
+
+a,
+a:active,
+a:hover,
+a:focus,
+a:visited {
+  text-decoration: none;
+  outline: none;
+}
+
+/* Icon when the collapsible content is shown */
+.panel-title a:after {
+  float: right;
+  font-family: "Glyphicons Halflings";
+  content: "\e114";
+}
+
+/* Icon when the collapsible content is hidden */
+.panel-title a.collapsed:after {
+  content: "\e080";
+}
+
+@media screen and (min-width: 992px) {
+  .container {
+    margin-top: 2.125rem;
+    margin-bottom: 2.125rem;
+  }
+
+  .container h1 {
+    margin-bottom: 3rem;
+  }
+
+  /* Hide icon when the collapsible content is shown
+     Icon when the collapsible content is hidden will still show */
+  .panel-title a:after {
+    content: "";
+  }
+}
+
+/********************************* Game Board *********************************/
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 12.5rem;
+  border: 4px solid #ffffff;
+  border-radius: 8px;
+  background-color: rgb(32, 64, 86);
+
+  font-weight: 900;
+  font-size: 7rem;
+  color: rgb(255, 255, 255);
+
+  cursor: pointer;
+}
+
+/****************************** playAgain Dialog ******************************/
+
+.modal-content {
+  background-image: none;
+  background-color: #F1E8E8;
+}
+
+.modal-header {
+  border: none;
+  text-align: center;
+}
+
+.modal-body {
+  text-align: center;
+}
+
+.modal-footer {
+  border: none;
+  text-align: center;
+}
+
+.btn-info {
+  background-color: #9FAB87;
+  border-color: #B4B38B;
+}
+
+.btn-info:hover,
+.btn-info:active {
+  background-color: #C9BB90;
+  border-color: #D4D1A9;
+  outline: none;
+}
+
+.btn-info:focus {
+  background-color: #C9BB90;
+  border-color: #DFFEE0;
+  outline: none;
+}
+
+.btn-info.active.focus,
+.btn-info.active:focus,
+.btn-info.active:hover,
+.btn-info:active.focus,
+.btn-info:active:focus,
+.btn-info:active:hover {
+  background-color: #D4D1A9;
+  border-color: #DFFEE0;
+  outline: none;
+}
+
+/*
+greens (from palletron):
+normal: #9FAB87/#B4B38B
+hover: #C9BB90/#D4D1A9
+active: #C9BB90/#D4D1A9
+focus: #C9BB90/#DFFEE0
+other: #D4D1A9/#DFFEE0
+
+blues (bootstrap original colors):
+normal: #5bc0de/#46b8da
+hover: #31b0d5/#269abc
+active: #31b0d5/#269abc
+focus: #31b0d5/#1b6d85
+other: #269abc/#1b6d85
+*/
