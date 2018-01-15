@@ -8,55 +8,18 @@ $(document).ready( function () {
 
 function createMenu() {
   var ruleModalOptions = {
-    url: 'resources/html/rules.html'
+    url: 'resources/html/rules.html',
+		height: '500',
+		width: '800'
+  };
+  var settingsModalOptions = {
+    Title: 'Settings',
 		height: '500',
 		width: '800'
   };
 
 	$('.rule').custom_modal_box(ruleModalOptions);
 
-  // show/hide rules
-  // $('.rule').click( function() {
-  //   showRules();
-  // } );
-  //
-  // $('#rule .close').click( function() {
-  //   $('#rules').hide();
-  // } );
-
-
-
   // show/hide display from menu button
-  $('.settings').click( function () {
-    showSettings();
-  } );
+  $('.settings').custom_modal_box(settingsModalOptions);
 };
-
-function showRules() {
-  $('#rules').show();
-  // $('.settings').unbind();
-  // $('.rules').click( function() {
-  //   hideRules();
-  // } );
-  // TODO: pause timer
-}
-
-function hideRules() {
-  $('#rules').hide();
-  createMenu();
-}
-
-function showSettings () {
-  $('#settings').show();
-  $('.settings').click( function () {
-    cancelSettings();
-  } );
-};
-
-function cancelSettings () {
-  $('#settings').hide();
-  $('.settings').click( function () {
-    showSettings();
-  } );
-  // TODO: clean up the cancellation (if needed)
-}

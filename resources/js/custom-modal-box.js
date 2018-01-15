@@ -1,5 +1,7 @@
 /**
  * from https://paulund.co.uk/how-to-create-a-simple-modal-box-with-jquery
+ * The one on the site is not responsive. I had to make it responsive.
+ * The only properties exposed right now are position, size, and content. Since site design is done more or less globaly, I figure it is fine to just modify colors directly here. I could add the colors to be modifiable too, but pretty soon, I'm adding the entire CSS. This is the problem with this template. This CAN still be overridden by the site's CSS.
  */
 (function($){
 
@@ -14,10 +16,9 @@
       description: "Example of how to create a modal box.",
       url: "",
       // size of the window
-      // TODO: change this so that it will be able to use % -- This will require calculating the tntire width (including the close) and converting it to PX
 			height : "250",
 			width : "500",
-      // position of the window
+      // position of the outer window
 			top: "20%",
 			left: "30%",
 		},prop);
@@ -66,7 +67,7 @@
     	var pageWidth = $(window).width();
 
     	$('.custom_block_page').css({
-        'z-index':'10'
+        'z-index':'10',
     		'position':'absolute',
     		'top':'0',
     		'left':'0',
@@ -84,8 +85,8 @@
     		'left':options.left,
     		'top':options.top,
 
-    		'height': options.height + 'px',
-    		'width': options.width + 'px',
+    		'height': options.height,
+    		'width': options.width,
 
         'border':'1px solid #fff',
     		'box-shadow': '0px 2px 7px #292929',
@@ -95,7 +96,8 @@
     		'-moz-border-radius':'10px',
     		'-webkit-border-radius':'10px',
 
-        'background': '#f2f2f2',
+        // 'background': '#f2f2f2',
+        'background': '#fff',
     	});
 
     	$('.custom_modal_close').css({
@@ -121,9 +123,10 @@
 
         'border-radius':'10px',
     		'-moz-border-radius':'10px',
-        '-webkit-border-radius':'10px'
+        '-webkit-border-radius':'10px',
 
-        'background-color':'#fff',
+        // 'background-color':'#fff',
+        'background-color':'#F1E8E8',
     	});
     }
 
