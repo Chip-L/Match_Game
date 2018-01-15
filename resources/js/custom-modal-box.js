@@ -16,11 +16,11 @@
       description: "Example of how to create a modal box.",
       url: "",
       // size of the window
-			height : "250",
-			width : "500",
+			height : "auto",
+			width : "auto",
       // position of the outer window
 			top: "20%",
-			left: "30%",
+			left: "10%",
 		},prop);
 
 		return this.click(function(e){
@@ -42,6 +42,7 @@
       var $close = $('<a href="#" class="custom_modal_close"></a>');
       var $inner = $('<div class="custom_inner_modal_box"></div>');
 
+      // Add the content - if url, load the page otherwise use the text
       if (options.url != "") {
         $inner.load(options.url);
       } else {
@@ -56,16 +57,23 @@
     	$pop_up.appendTo('.custom_block_page');
 
     	$('.custom_modal_close').click(function(){
-        $('.custom_block_page').fadeOut().remove();
-        $(this).parent().fadeOut().remove();
+        modal_close();
     	});
+
+      $(window).resize( function() {
+        add_styles();
+      } );
     }
 
     function add_styles(){
       /*Block page overlay*/
     	var pageHeight = $(document).height();
     	var pageWidth = $(window).width();
+      var outerHeight = calculateSize(options.height, options.top, pageHeight);
+      var outerWidth = calculateSize(options.width, options.left, pageWidth);
 
+
+      // covers the background
     	$('.custom_block_page').css({
         'z-index':'10',
     		'position':'absolute',
@@ -78,6 +86,7 @@
         'background-color':'rgba(0,0,0,0.6)',
     	});
 
+      // outer box
       $('.custom_modal_box').css({
         'display':'none',
         'z-index':'50',
@@ -85,10 +94,12 @@
     		'left':options.left,
     		'top':options.top,
 
-    		'height': options.height,
-    		'width': options.width,
+        'height': 'auto',
+        'width': 'auto',
+    		'max-height': outerHeight,
+    		'max-width': outerWidth,
 
-        'border':'1px solid #fff',
+        'border':'1px solid rgba(0, 0, 0, 0.2)',
     		'box-shadow': '0px 2px 7px #292929',
     		'-moz-box-shadow': '0px 2px 7px #292929',
     		'-webkit-box-shadow': '0px 2px 7px #292929',
@@ -96,10 +107,11 @@
     		'-moz-border-radius':'10px',
     		'-webkit-border-radius':'10px',
 
-        // 'background': '#f2f2f2',
-        'background': '#fff',
+        // this color is based off of the background color in the inner at .5 opacity (opacity won't work here without using RGBA)
+        'background': '#aba4a4',
     	});
 
+      // close button (floats up and to the right)
     	$('.custom_modal_close').css({
         'display':'block',
     		'position':'relative',
@@ -115,9 +127,12 @@
         'background-repeat': 'no-repeat',
     	});
 
+      // inner box -
     	$('.custom_inner_modal_box').css({
-    		'height':(options.height - 50) + 'px',
-    		'width':(options.width - 50) + 'px',
+    		'height': 'auto',
+        'width': 'auto',
+    		'max-height':(outerHeight - 50),
+    		'max-width':(outerWidth - 50),
     		'padding':'10px',
     		'margin':'15px',
 
@@ -125,9 +140,66 @@
     		'-moz-border-radius':'10px',
         '-webkit-border-radius':'10px',
 
-        // 'background-color':'#fff',
+        // customize this for the site
         'background-color':'#F1E8E8',
     	});
+    }
+
+    function modal_close() {
+      $('.custom_block_page').fadeOut().remove();
+      $(this).parent().fadeOut().remove();
+    };
+
+    /*
+      Takes the param and converts it to the size needed. This calculates in the extra area needed for the close box. This always returns 'px'
+      Note: 'em' is treated the same as 'rem' since I don't have access to the 'em' size (todo?)
+
+      Input:
+        sizeVal = options.height/width (size desired of pop_up_box)
+        positionVal = options.top/left (position of pop_up_box)
+        pageVal = pageHeight/pageWidth (area covered by block_page)
+      Return:
+        calculated size in px as a numberic value (px is automatic by HTML)
+    */
+    function calculateSize(sizeVal, positionVal, pageVal) {
+      var size = getValue(sizeVal);
+      var pos = getValue(positionVal);
+
+      if (size.unit === '%') {
+        size.number = pageVal * (size.unit / 100);
+        size.unit = 'px';
+      } else if(size.unit != 'px') {
+        size.number = convertRemToPixels(size.number);
+        size.unit = 'px';
+      }
+
+      if(size.number === 0) { // assume auto or someother keyword
+        if(pos.unit == '%') { // equal percentage from each side
+          size.number = pageVal - (pageVal * (2 * pos.number / 100));
+        } else { // still need to calculate
+          pos.number =
+            (pos.unit === 'px') ? pos.number : convertRemToPixels(pos.number);
+          size.number = pageVal - (2 * pos.number);
+        }
+      }
+
+      // we've determined the size of the "auto" (or missing) now to deal with the close space. This only needs to change if it is going to be off the edge of the screen. With padding and margin, it adds 25px to the size.
+      if((size.number + 25) >= pageVal) {
+          size.number -= 25;
+      }
+
+      return(size.number);
+    };
+
+    function getValue(value) {
+      var myRegEx = /[a-zA-Z]+$|%$/
+      var unit = myRegEx.exec(value)[0];
+    	var num = value.replace(unit, "");
+    	return({number: num, unit: unit});
+    };
+
+    function convertRemToPixels(num) {
+        return num * parseFloat(getComputedStyle(document.documentElement).fontSize);
     }
 
 		return this;
