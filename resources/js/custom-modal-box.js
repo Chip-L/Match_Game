@@ -14,6 +14,7 @@
       description: "Example of how to create a modal box.",
       url: "",
       // size of the window
+      // TODO: change this so that it will be able to use % -- This will require calculating the tntire width (including the close) and converting it to PX
 			height : "250",
 			width : "500",
       // position of the window
@@ -65,56 +66,64 @@
     	var pageWidth = $(window).width();
 
     	$('.custom_block_page').css({
+        'z-index':'10'
     		'position':'absolute',
     		'top':'0',
     		'left':'0',
-    		'background-color':'rgba(0,0,0,0.6)',
+
     		'height':pageHeight,
     		'width':pageWidth,
-    		'z-index':'10'
+
+        'background-color':'rgba(0,0,0,0.6)',
     	});
 
       $('.custom_modal_box').css({
+        'display':'none',
+        'z-index':'50',
     		'position':'absolute',
     		'left':options.left,
     		'top':options.top,
-    		'display':'none',
+
     		'height': options.height + 'px',
     		'width': options.width + 'px',
-    		'border':'1px solid #fff',
+
+        'border':'1px solid #fff',
     		'box-shadow': '0px 2px 7px #292929',
     		'-moz-box-shadow': '0px 2px 7px #292929',
     		'-webkit-box-shadow': '0px 2px 7px #292929',
     		'border-radius':'10px',
     		'-moz-border-radius':'10px',
     		'-webkit-border-radius':'10px',
-    		'background': '#f2f2f2',
-    		'z-index':'50',
+
+        'background': '#f2f2f2',
     	});
 
     	$('.custom_modal_close').css({
+        'display':'block',
     		'position':'relative',
+        'float':'right',
     		'top':'-25px',
     		'left':'20px',
-    		'float':'right',
-    		'display':'block',
-    		'height':'50px',
+
+        'height':'50px',
     		'width':'50px',
-    		'background': 'url(./resources/images/Actions-window-close-icon.png)',
+
+        'background': 'url(./resources/images/Actions-window-close-icon.png)',
         'background-size': 'contain',
         'background-repeat': 'no-repeat',
-        // 'background' : '#ffffff',
     	});
 
     	$('.custom_inner_modal_box').css({
-    		'background-color':'#fff',
     		'height':(options.height - 50) + 'px',
     		'width':(options.width - 50) + 'px',
     		'padding':'10px',
     		'margin':'15px',
-    		'border-radius':'10px',
+
+        'border-radius':'10px',
     		'-moz-border-radius':'10px',
         '-webkit-border-radius':'10px'
+
+        'background-color':'#fff',
     	});
     }
 
