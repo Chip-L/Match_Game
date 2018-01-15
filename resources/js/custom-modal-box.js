@@ -9,13 +9,16 @@
 		// Default parameters
 
 		var options = $.extend({
+      // content of the window (URL overrides title/description)
+      title:"JQuery Modal Box Demo",
+      description: "Example of how to create a modal box.",
+      url: "",
+      // size of the window
 			height : "250",
 			width : "500",
-			title:"JQuery Modal Box Demo",
-			description: "Example of how to create a modal box.",
+      // position of the window
 			top: "20%",
 			left: "30%",
-      url: "resources/html/rules.html",
 		},prop);
 
 		return this.click(function(e){
@@ -37,14 +40,14 @@
       var $close = $('<a href="#" class="custom_modal_close"></a>');
       var $inner = $('<div class="custom_inner_modal_box"></div>');
 
-      $inner.load(options.url);//, function(data) {
-      //   $inner.html(data);
-      // } );
-      // $inner.append(
-      //   // $('.custom_inner_modal_box').load(options.url) +
-      //   '<h2>' + options.title + '</h2>' +
-      //   '<p>' + options.description + '</p>'
-      // );
+      if (options.url != "") {
+        $inner.load(options.url);
+      } else {
+        $inner.append(
+            '<h2>' + options.title + '</h2>' +
+            '<p>' + options.description + '</p>'
+        );
+      }
 
       $pop_up.append($close).append($inner);
 
