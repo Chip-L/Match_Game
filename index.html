@@ -42,7 +42,6 @@
             <a href="#" class="rule">
               <i class="fa fa-book" aria-hidden="true"></i>
               <span class="desktop-menu">&nbsp;Rules</span>
-              <i class="fa fa-caret-down"></i>
             </a>
           </li>
           <li>
@@ -51,7 +50,6 @@
               <span class="desktop-menu">
                 &nbsp;Settings
               </span>
-              <i class="fa fa-caret-down"></i>
             </a>
           </li>
         </ul>
@@ -60,17 +58,30 @@
   </header>
 
   <!-- hidden div that shows the rules -->
-  <div id="rules" class="dropdown-content rule">
-    <h2>Rules</h2><i class="fa fa-times" aria-hidden="true"></i>
-    <p>Click on a card to reveal the number on the other side. Click on a second card to try and find a match to the first. If you succeed, the pair will be removed from play. If not, try again!</p>
+  <!-- <div id="rules" class="modal rule" tabindex="-1">
+    <div class="dropdown-content">
+      <h2>Rules</h2><i class="fa fa-times close" aria-hidden="true"></i>
+      <p>Click on a card to reveal the number on the other side. Click on a second card to try and find a match to the first. If you succeed, the pair will be removed from play. If not, try again!</p>
 
-    <h2>How To Win</h2>
-    <p>You win when all pairs have been found.</p>
-  </div>
+      <h2>How To Win</h2>
+      <p>You win when all pairs have been found.</p>
+    </div>
+  </div> -->
 
   <!-- hidden div that will show the settings -->
-  <div id="settings" class="dropdown-content">
+<div id="settings" class="modal" tabindex="-1">
+  <div class="dropdown-content">
     <h2>Settings</h2><i class="fa fa-times settings" aria-hidden="true"></i>
+
+
+  </div>
+</div>
+
+  <!-- game board
+  game-board is a flex container (column) that holds game-rows
+  game-row is a flex container that holds cards
+  cards are determined by columns and are spaced evenly in the center of the board -->
+  <div id="game" class="game-board">
 
   </div>
 
@@ -137,9 +148,10 @@
     crossorigin="anonymous">
   </script>
   <!-- site JS scripts -->
-  <script type="text/javascript" src="./resources/js/timer.js"></script>
-  <script type="text/javascript" src="./resources/js/match-game.js"></script>
-  <script type="text/javascript" src="./resources/js/main.js"></script>
-  <script type="text/javascript" src="./resources/js/tests.js"></script>
+  <script src="./resources/js/custom-modal-box.js"></script>
+  <script src="./resources/js/timer.js"></script>
+  <script src="./resources/js/match-game.js"></script>
+  <script src="./resources/js/main.js"></script>
+  <script src="./resources/js/tests.js"></script>
 </body>
 </html>
