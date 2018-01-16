@@ -93,3 +93,46 @@ li a {
 }
 
 /***************************** Tags in Game Board *****************************/
+/* .flex-center {
+  display: flex;
+  justify-content: center;
+} */
+
+.game-board {
+  /* flex-grow: 1; */
+  margin: 5px auto;
+  width: 500px;
+}
+
+.game-row {
+  display: flex;
+  justify-content: space-around;
+
+  padding: 0;
+  margin: 0;
+}
+
+.card {
+  flex: 1 0 auto;
+
+  height: auto;
+  margin: 0;
+
+  border: 4px solid #ffffff;
+  border-radius: 8px;
+  background-color: rgb(32, 64, 86);
+
+  text-align: center;
+  font-weight: 900;
+  /* font-size: 7rem; */
+  color: rgb(255, 255, 255);
+
+  cursor: pointer;
+}
+
+/* .game-board:before, */
+.card:before {
+  content: '';
+  float: left;
+  padding-top: 100%;
+}

@@ -3,7 +3,7 @@
 */
 $(document).ready( function () {
   createMenu();
-  MatchGame.playGame();
+  // MatchGame.playGame();
 } );
 
 function createMenu() {
