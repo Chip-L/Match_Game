@@ -16,16 +16,18 @@
       url: "",
       // size of the window
 			height : "auto",
-			width : "auto",
+			width : "100%",
       // position of the outer window
 			top: "20%",
 			left: "10%",
+      //
 		},prop);
 
 		return this.click(function(e){
       add_block_page();
     	add_popup_box();
     	add_styles();
+      // checkNeedScroll();
 
 	    $('.custom_modal_box').fadeIn();
 		});
@@ -119,6 +121,24 @@
         'background': '#aba4a4',
     	});
 
+      // inner box -
+      $('.custom_inner_modal_box').css({
+        'height': 'auto',
+        'width': 'auto',
+        'max-height':(outerHeight - 50),
+        'max-width':(outerWidth - 50),
+        'padding':'10px',
+        'margin':'15px',
+        'overflow': 'visible',
+
+        'border-radius':'10px',
+        '-moz-border-radius':'10px',
+        '-webkit-border-radius':'10px',
+
+        // customize this for the site
+        'background-color':'#F1E8E8',
+      });
+
       // close button (floats up and to the right)
     	$('.custom_modal_close').css({
         'display':'block',
@@ -134,23 +154,6 @@
         'background-size': 'contain',
         'background-repeat': 'no-repeat',
     	});
-
-      // inner box -
-    	$('.custom_inner_modal_box').css({
-    		'height': 'auto',
-        'width': 'auto',
-    		'max-height':(outerHeight - 50),
-    		'max-width':(outerWidth - 50),
-    		'padding':'10px',
-    		'margin':'15px',
-
-        'border-radius':'10px',
-    		'-moz-border-radius':'10px',
-        '-webkit-border-radius':'10px',
-
-        // customize this for the site
-        'background-color':'#F1E8E8',
-    	});
     }
 
     /*
@@ -165,7 +168,6 @@
       Calculates the maximum size allowed for the pop-up box based on the positioning (keeps it centered)
 
       Input:
-        sizeVal = options.height/width (size desired of pop_up_box)
         positionVal = options.top/left (position of pop_up_box)
         pageVal = pageHeight/pageWidth (area covered by block_page)
       Return:
@@ -200,6 +202,12 @@
 
       return(maxSize);
     };
+
+    function checkNeedScroll() {
+      var $inner = $('.custom_inner_modal_box');
+      var actualInnerWidthClient = $inner.prop("clientWidth"); // El. width minus scrollbar width
+      var actualInnerWidthScroll = $inner.prop("scrollWidth"); // El. width minus scrollbar width
+    }
 
     function getValue(value) {
       var myRegEx = /[a-zA-Z]+$|%$/
