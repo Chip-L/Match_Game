@@ -2,6 +2,8 @@ var MatchGame = {};
 
 MatchGame.clickCount = 0;
 MatchGame.interval; // used to track the timeout function
+MatchGame.rows = 2;
+MatchGame.cols =2;
 
 /*
   Executes the game. Sets up the board and resets the clickCount.
@@ -25,7 +27,9 @@ MatchGame.generateCardValues = function () {
   var arrOrdered = [],
       arrRandom = [];
 
-  for(var i=0; i<8; i++) {
+  var numCards = MatchGame.rows * MatchGame.cols;
+
+  for(var i=0; i<(numCards/2); i++) {
     arrOrdered.push(i + 1);
     arrOrdered.push(i + 1);
   }
@@ -58,14 +62,23 @@ MatchGame.renderCards = function(cardValues, $game) {
   $game.empty();
   $game.data('flippedCards', []);
 
-  for (var i = 0; i < cardValues.length; i++) {
-    var $card = $('<div class="col-xs-3 card"></div>');
-    $card.data('index', i);
-    $card.data('value', cardValues[i]);
-    $card.data('color', colorValue[ cardValues[i] - 1 ]);
-    $card.data('isFlipped', false);
+  // TODO: Set .game-board height
 
-    $game.append($card);
+  for(var r = 0; r < MatchGame.rows; r++) {
+    var $row = $('<div class="game-row"></div>');
+
+    for (var c = 0; c < MatchGame.cols; c++) {
+      var $card = $('<div class="card"></div>');
+      $card.data({
+        'value': cardValues[c],
+        'color': colorValue[ cardValues[c] - 1 ],
+        'isFlipped': false,
+      });
+
+      $card.appendTo($row);
+    }
+
+    $row.appendTo($game);
   }
 
   // appends to ALL cards at the same time
@@ -114,7 +127,7 @@ MatchGame.flipCard = function ($card, $game) {
       MatchGame.showMatchedCard(flippedCards[0]);
       MatchGame.showMatchedCard(flippedCards[1]);
 
-      MatchGame.checkWin($game);
+      // MatchGame.checkWin($game);
 
       // reset matchCards
       $game.data('flippedCards', []);
