@@ -11,7 +11,7 @@ To do list:
   - [ ] add fireworks to win screen
 - [x] ~~* Only allow two cards to be visible at a time (currently the setTimeout allows users to click really quickly and see a few)~~ (completed Jan 13, 2018)
 - [ ] \* Allow user to select from multiple board sizes
-  - [ ] adjust font size to keep cards square
+  - [ ] adjust font size to keep cards square (start here: https://stackoverflow.com/questions/16056591/font-scaling-based-on-width-of-container)
 - [ ] \* Change card values to non-number values (images)
 - [x] ~~* Add score or time:~~
   - [x] ~~clicks~~ (completed Jan 7, 2018)
@@ -74,4 +74,4 @@ Code wise, this shouldn't be that difficult. The design is the tough part. I'm t
   * At this point, Bootstrap isn't offering a lot of value. I think rows of flexboxes might work better and give more flexibility. It would also reduce the amount of html code needed to render the page.
   * this will allow more cards to display at a time (not confined to 12 across)
 
-Note: adding a non-breaking space (&nbsp;) to the cards keeps them a consistent size
+Note: adding a non-breaking space (&nbsp;) to the cards keeps them a consistent size I need a better solution than this.

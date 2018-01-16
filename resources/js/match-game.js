@@ -2,7 +2,7 @@ var MatchGame = {};
 
 MatchGame.clickCount = 0;
 MatchGame.interval; // used to track the timeout function
-MatchGame.rows = 3;
+MatchGame.rows = 4;
 MatchGame.cols = 4;
 
 /*
@@ -73,7 +73,7 @@ MatchGame.renderCards = function(cardValues, $game) {
   $game.empty();
   $game.data('flippedCards', []);
 
-  // TODO: Set .game-board height
+  // TODO: Set .game-board height (by setting the width? Orientation dependent?)
 
   for(var r = 0; r < MatchGame.rows; r++) {
     var $row = $('<div class="game-row"></div>');
