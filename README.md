@@ -73,3 +73,5 @@ Code wise, this shouldn't be that difficult. The design is the tough part. I'm t
 * Step 4: Consider taking out of bootstrap.
   * At this point, Bootstrap isn't offering a lot of value. I think rows of flexboxes might work better and give more flexibility. It would also reduce the amount of html code needed to render the page.
   * this will allow more cards to display at a time (not confined to 12 across)
+
+Note: adding a non-breaking space (&nbsp;) to the cards keeps them a consistent size

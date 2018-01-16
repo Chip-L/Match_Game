@@ -2,8 +2,8 @@ var MatchGame = {};
 
 MatchGame.clickCount = 0;
 MatchGame.interval; // used to track the timeout function
-MatchGame.rows = 2;
-MatchGame.cols =2;
+MatchGame.rows = 3;
+MatchGame.cols = 4;
 
 /*
   Executes the game. Sets up the board and resets the clickCount.
@@ -28,8 +28,17 @@ MatchGame.generateCardValues = function () {
       arrRandom = [];
 
   var numCards = MatchGame.rows * MatchGame.cols;
+  var numPairs = numCards/2;
 
-  for(var i=0; i<(numCards/2); i++) {
+  try {
+    if(Math.floor(numPairs) === numPairs) throw 'not an even number: ' + numPairs;
+  } catch (e) {
+    console.log(e);
+  } finally {
+    numPairs = Math.ceil(numPairs); // adds extra cards if nothing else
+  }
+
+  for(var i=0; i < numPairs; i++) {
     arrOrdered.push(i + 1);
     arrOrdered.push(i + 1);
   }
@@ -39,7 +48,8 @@ MatchGame.generateCardValues = function () {
     arrRandom.push(arrOrdered[index]);
     arrOrdered.splice(index, 1);
   }
-  // console.log(arrRandom);
+
+  console.log(arrRandom);
   return(arrRandom);
 };
 
@@ -48,6 +58,7 @@ MatchGame.generateCardValues = function () {
   object.
 */
 MatchGame.renderCards = function(cardValues, $game) {
+  var cardIndex = 0;
   var colorValue = [
     'hsl(25, 85%, 65%)',
     'hsl(55, 85%, 65%)',
@@ -68,14 +79,15 @@ MatchGame.renderCards = function(cardValues, $game) {
     var $row = $('<div class="game-row"></div>');
 
     for (var c = 0; c < MatchGame.cols; c++) {
-      var $card = $('<div class="card"></div>');
+      var $card = $('<div class="card">&nbsp;</div>');
       $card.data({
-        'value': cardValues[c],
-        'color': colorValue[ cardValues[c] - 1 ],
+        'value': cardValues[cardIndex],
+        'color': colorValue[ cardValues[cardIndex] - 1 ],
         'isFlipped': false,
       });
 
       $card.appendTo($row);
+      cardIndex++;
     }
 
     $row.appendTo($game);
@@ -210,6 +222,6 @@ MatchGame.showMatchedCard = function ($card) {
 */
 MatchGame.showResetCard = function ($card) {
   $card.css('background-color', 'rgb(32, 64, 86)')
-       .text('')
+       .html('&nbsp;')
        .data('isFlipped', false);
 };
