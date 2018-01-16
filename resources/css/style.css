@@ -2,7 +2,7 @@
 html {
   font-family: "Work Sans", sans-serif;
   font-size: 16px;
-  font-size: 2vw;
+  /* font-size: 2vw; */
 }
 
 body {
@@ -12,7 +12,7 @@ body {
 
 h1 {
   font-weight: bold;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
 }
 
 h2 {
@@ -76,12 +76,12 @@ li a {
 .desktop-menu {
   display: none;
 }
-/*
+
 @media screen and (min-width: 445px) {
   h1 {
     font-size: 2.5rem;
   }
-} */
+}
 
 @media screen and (min-width: 778px) {
   .desktop-menu {
