@@ -11,8 +11,8 @@ function createMenu() {
     url: 'resources/html/rules.html',
 		// height: '500',
 		// width: '80%',
-    top: '10%',
-    left: '10%',
+    // top: '10%',
+    // left: '10%',
   };
   var settingsModalOptions = {
     Title: 'Settings',

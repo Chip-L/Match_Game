@@ -31,12 +31,18 @@
 	    $('.custom_modal_box').fadeIn();
 		});
 
+    /*
+      adds the dark background
+    */
     function add_block_page(){
     	var block_page = $('<div class="custom_block_page"></div>');
 
     	$(block_page).appendTo('body');
     }
 
+    /*
+      adds the actual popup box
+    */
     function add_popup_box(){
       var $pop_up = $('<div class="custom_modal_box"></div>');
       var $close = $('<a href="#" class="custom_modal_close"></a>');
@@ -65,12 +71,15 @@
       } );
     }
 
+    /*
+      this defines styles for everything in the modal
+    */
     function add_styles(){
       /*Block page overlay*/
     	var pageHeight = $(document).height();
     	var pageWidth = $(window).width();
-      var outerHeight = calculateSize(options.height, options.top, pageHeight);
-      var outerWidth = calculateSize(options.width, options.left, pageWidth);
+      var outerHeight = calculateMaxSize(options.top, pageHeight);
+      var outerWidth = calculateMaxSize(options.left, pageWidth);
 
 
       // covers the background
@@ -145,14 +154,16 @@
     	});
     }
 
+    /*
+      separate close so that it can be accessed by other buttons/functions
+    */
     function modal_close() {
       $('.custom_block_page').fadeOut().remove();
       $(this).parent().fadeOut().remove();
     };
 
     /*
-      Takes the param and converts it to the size needed. This calculates in the extra area needed for the close box. This always returns 'px'
-      Note: 'em' is treated the same as 'rem' since I don't have access to the 'em' size (todo?)
+      Calculates the maximum size allowed for the pop-up box based on the positioning (keeps it centered)
 
       Input:
         sizeVal = options.height/width (size desired of pop_up_box)
@@ -161,34 +172,34 @@
       Return:
         calculated size in px as a numberic value (px is automatic by HTML)
     */
-    function calculateSize(sizeVal, positionVal, pageVal) {
-      var size = getValue(sizeVal);
+    function calculateMaxSize(positionVal, pageVal) {
       var pos = getValue(positionVal);
 
-      if (size.unit === '%') {
-        size.number = pageVal * (size.unit / 100);
-        size.unit = 'px';
-      } else if(size.unit != 'px') {
-        size.number = convertRemToPixels(size.number);
-        size.unit = 'px';
+      var maxSize = 0;
+
+      if(pos.unit == '%') { // equal percentage from each side
+        maxSize = pageVal - (pageVal * (2 * pos.number / 100));
+      } else { // still need to calculate
+        pos.number = (pos.unit === 'px') ? pos.number : convertRemToPixels(pos.number);
+        maxSize = pageVal - (2 * pos.number);
       }
 
-      if(size.number === 0) { // assume auto or someother keyword
-        if(pos.unit == '%') { // equal percentage from each side
-          size.number = pageVal - (pageVal * (2 * pos.number / 100));
-        } else { // still need to calculate
-          pos.number =
-            (pos.unit === 'px') ? pos.number : convertRemToPixels(pos.number);
-          size.number = pageVal - (2 * pos.number);
+      if((maxSize + 25) >= pageVal) {
+          maxSize -= 25;
+      }
+
+      // error check
+      try {
+        if(maxSize <=0) throw 'maxSize = ' + maxSize;
+      } catch (e) {
+        console.log('fn calculateMaxSize:' + e);
+      } finally {
+        if(maxSize <=0) {
+          maxSize = 10;
         }
       }
 
-      // we've determined the size of the "auto" (or missing) now to deal with the close space. This only needs to change if it is going to be off the edge of the screen. With padding and margin, it adds 25px to the size.
-      if((size.number + 25) >= pageVal) {
-          size.number -= 25;
-      }
-
-      return(size.number);
+      return(maxSize);
     };
 
     function getValue(value) {
