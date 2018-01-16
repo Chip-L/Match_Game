@@ -9,7 +9,6 @@
 	$.fn.custom_modal_box = function(prop){
 
 		// Default parameters
-
 		var options = $.extend({
       // content of the window (URL overrides title/description)
       title:"JQuery Modal Box Demo",
