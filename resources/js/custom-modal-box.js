@@ -61,10 +61,20 @@
       if (options.url != "") {
         $inner.load(options.url);
       } else {
-        $inner.append(
-            '<h2>' + options.title + '</h2>' +
-            '<p>' + options.description + '</p>'
-        );
+        var innerText = '';
+
+        if(options.title[0] === "<") { // assume formatting
+          innerText += options.title;
+        } else {
+          innerText += '<h2>' + options.title + '</h2>';
+        }
+        if(options.description[0] === "<") {
+          innerText += options.description;
+        } else {
+          innerText += '<p>' + options.description + '</p>';
+        }
+
+        $inner.append(innerText);
       }
 
       $pop_up.append($close).append($inner);

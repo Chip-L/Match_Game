@@ -12,12 +12,6 @@ MatchGame.cols = 2;
 MatchGame.playGame = function () {
   var $game = $('#game');
 
-  // this isn't correct
-  try {
-    modal_close();
-  } catch (e) {
-    // do nothing
-  }
   MatchGame.clickCount = 0;
   Timer.resetTimer();
 
@@ -182,26 +176,13 @@ MatchGame.checkWin = function ($game) {
     Timer.stopTimer();
 
     setTimeout( function () {
-      var t = Timer.getTimeObj();
+      var winModalOptions = {
+        title: '<h1>You win!</h1>',
+        description: MatchGame.createWinDesc(),
+      };
 
-      // trigger modal window so that the display text can be entered
+      $('.win').custom_modal_box(winModalOptions);
       $('.win').trigger('click');
-      
-      var displayText =
-        '<h2>It took you ' + MatchGame.clickCount + ' clicks in ';
-
-      if(t.hours > 0) {
-        displayText += t.hours + ' hours, ';
-      }
-      if((t.minutes > 0) || (t.hours > 0)) {
-        displayText += t.minutes + ' minutes and ';
-      }
-      displayText += t.seconds + ' seconds ';
-
-      displayText += ' to beat the game.</h2>';
-
-      // $('#playAgain .modal-body').empty().append(displayText);
-      // $('#playAgain').modal('show');
     }, 500);
   }
 } // end MatchGame.checkWin
@@ -234,3 +215,33 @@ MatchGame.showResetCard = function ($card) {
        .html('&nbsp;')
        .data('isFlipped', false);
 };
+
+
+/*
+  create the description for the win box This is mostly just to move it out of the way of the functional code.The idea is its easier to maintain here. and cleaner.
+*/
+MatchGame.createWinDesc = function() {
+  var t = Timer.getTimeObj();
+  var displayText =
+    '<div id="custom-content">' +
+      '<h2>It took you ' + MatchGame.clickCount + ' clicks in ';
+
+  if(t.hours > 0) {
+    displayText += t.hours + ' hours, ';
+  }
+  if((t.minutes > 0) || (t.hours > 0)) { // minutes can = 0 while hours != 0
+    displayText += t.minutes + ' minutes and ';
+  }
+  displayText += t.seconds + ' seconds ';
+
+  displayText += ' to beat the game.</h2>' +
+    '</div>' +
+    '<button type="button" class="btn-info" onclick="MatchGame.closeWin()">Play Again</button>';
+
+  return (displayText);
+}
+
+MatchGame.closeWin = function() {
+  $('custom_modal_close').trigger('click');
+  MatchGame.playGame();
+}
