@@ -73,6 +73,7 @@ li a {
   opacity: 0.6;
 }
 
+.nodisplay,
 .desktop-menu {
   display: none;
 }

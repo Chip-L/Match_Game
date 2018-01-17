@@ -2,8 +2,8 @@ var MatchGame = {};
 
 MatchGame.clickCount = 0;
 MatchGame.interval; // used to track the timeout function
-MatchGame.rows = 4;
-MatchGame.cols = 4;
+MatchGame.rows = 2;
+MatchGame.cols = 2;
 
 /*
   Executes the game. Sets up the board and resets the clickCount.
@@ -12,6 +12,7 @@ MatchGame.cols = 4;
 MatchGame.playGame = function () {
   var $game = $('#game');
 
+  // this isn't correct
   try {
     modal_close();
   } catch (e) {
@@ -144,7 +145,7 @@ MatchGame.flipCard = function ($card, $game) {
       MatchGame.showMatchedCard(flippedCards[0]);
       MatchGame.showMatchedCard(flippedCards[1]);
 
-      // MatchGame.checkWin($game);
+      MatchGame.checkWin($game);
 
       // reset matchCards
       $game.data('flippedCards', []);
@@ -165,7 +166,7 @@ MatchGame.flipCard = function ($card, $game) {
 */
 MatchGame.checkWin = function ($game) {
   // console.log("checkWin");
-
+  var flipsNeeded = MatchGame.rows * MatchGame.cols;
   var flippedCount = 0;
 
   $('.card').each( function () {
@@ -177,12 +178,15 @@ MatchGame.checkWin = function ($game) {
   } );
 
   // if(flippedCount > 0) {
-  if(flippedCount === 16) {
+  if(flippedCount === flipsNeeded) {
     Timer.stopTimer();
 
     setTimeout( function () {
       var t = Timer.getTimeObj();
 
+      // trigger modal window so that the display text can be entered
+      $('.win').trigger('click');
+      
       var displayText =
         '<h2>It took you ' + MatchGame.clickCount + ' clicks in ';
 
@@ -196,8 +200,8 @@ MatchGame.checkWin = function ($game) {
 
       displayText += ' to beat the game.</h2>';
 
-      $('#playAgain .modal-body').empty().append(displayText);
-      $('#playAgain').modal('show');
+      // $('#playAgain .modal-body').empty().append(displayText);
+      // $('#playAgain').modal('show');
     }, 500);
   }
 } // end MatchGame.checkWin
