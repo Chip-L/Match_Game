@@ -137,9 +137,9 @@ li a {
   padding-top: 100%;
 }
 
-/****************************** playAgain Dialog ******************************/
+/******************* Custom Modal Dialog additional formats *******************/
 
-.custom_inner_modal_box {
+#playAgain .custom_inner_modal_box {
   text-align: center;
 }
 

@@ -177,6 +177,7 @@ MatchGame.checkWin = function ($game) {
 
     setTimeout( function () {
       var winModalOptions = {
+        name: 'playAgain',
         title: '<h1>You win!</h1>',
         description: MatchGame.createWinDesc(),
       };

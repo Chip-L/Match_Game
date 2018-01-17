@@ -12,6 +12,8 @@
 
 		// Default parameters
 		var options = $.extend({
+      // optional id for dialog to allow custom formats
+      name: "",
       // content of the window (URL overrides title/description)
       title:"JQuery Modal Box Demo",
       description: "Example of how to create a modal box.",
@@ -56,6 +58,10 @@
       var $pop_up = $('<div class="custom_modal_box"></div>');
       var $close = $('<a href="#" class="custom_modal_close"></a>');
       var $inner = $('<div class="custom_inner_modal_box"></div>');
+
+      if(options.name != "") {
+        $pop_up.attr('id', options.name);
+      }
 
       // Add the content - if url, load the page otherwise use the text
       if (options.url != "") {
