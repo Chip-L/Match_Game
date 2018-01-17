@@ -131,9 +131,81 @@ li a {
   cursor: pointer;
 }
 
-/* .game-board:before, */
 .card:before {
   content: '';
   float: left;
   padding-top: 100%;
 }
+
+/****************************** playAgain Dialog ******************************/
+
+.custom_inner_modal_box {
+  text-align: center;
+}
+
+#custom-content {
+  margin: 2rem auto;
+}
+
+/* mostly copied from a bootstrap button */
+.btn-info {
+  display: inline-block;
+  margin-bottom: 0;
+
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+  border: 1px solid transparent;
+
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  background-image: none;
+  color: #fff;
+  background-color: #9FAB87;
+  border-color: #B4B38B;
+
+  user-select: none;
+  cursor: pointer;
+}
+
+.btn-info:hover,
+.btn-info:active {
+  background-color: #C9BB90;
+  border-color: #D4D1A9;
+  outline: none;
+}
+
+.btn-info:focus {
+  background-color: #C9BB90;
+  border-color: #DFFEE0;
+  outline: none;
+}
+
+.btn-info.active.focus,
+.btn-info.active:focus,
+.btn-info.active:hover,
+.btn-info:active.focus,
+.btn-info:active:focus,
+.btn-info:active:hover {
+  background-color: #D4D1A9;
+  border-color: #DFFEE0;
+  outline: none;
+}
+
+/*
+greens (from palletron):
+normal: #9FAB87/#B4B38B
+hover: #C9BB90/#D4D1A9
+active: #C9BB90/#D4D1A9
+focus: #C9BB90/#DFFEE0
+other: #D4D1A9/#DFFEE0
+
+blues (bootstrap original colors):
+normal: #5bc0de/#46b8da
+hover: #31b0d5/#269abc
+active: #31b0d5/#269abc
+focus: #31b0d5/#1b6d85
+other: #269abc/#1b6d85
+*/
