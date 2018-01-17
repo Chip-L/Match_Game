@@ -81,13 +81,9 @@
 
     	$pop_up.appendTo('.custom_block_page');
 
-    	$('.custom_modal_close').click(function(){
-        modal_close();
-    	});
+    	$('.custom_modal_close').click(modal_close);
 
-      $(window).resize( function() {
-        add_styles();
-      } );
+      $(window).resize(add_styles);
     }
 
     /*
@@ -178,6 +174,7 @@
       separate close so that it can be accessed by other buttons/functions
     */
     function modal_close() {
+
       $('.custom_block_page').fadeOut().remove();
       $(this).parent().fadeOut().remove();
     };

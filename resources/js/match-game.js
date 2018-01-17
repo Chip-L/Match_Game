@@ -216,9 +216,8 @@ MatchGame.showResetCard = function ($card) {
        .data('isFlipped', false);
 };
 
-
 /*
-  create the description for the win box This is mostly just to move it out of the way of the functional code.The idea is its easier to maintain here. and cleaner.
+  create the description for the win box This is mostly just to move it out of the way of the functional code.The idea is its easier to maintain here and cleaner.
 */
 MatchGame.createWinDesc = function() {
   var t = Timer.getTimeObj();
@@ -242,6 +241,6 @@ MatchGame.createWinDesc = function() {
 }
 
 MatchGame.closeWin = function() {
-  $('custom_modal_close').trigger('click');
+  $('.custom_modal_close').trigger('click');
   MatchGame.playGame();
 }
