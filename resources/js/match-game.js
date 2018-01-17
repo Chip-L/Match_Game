@@ -12,6 +12,11 @@ MatchGame.cols = 4;
 MatchGame.playGame = function () {
   var $game = $('#game');
 
+  try {
+    modal_close();
+  } catch (e) {
+    // do nothing
+  }
   MatchGame.clickCount = 0;
   Timer.resetTimer();
 
@@ -31,7 +36,7 @@ MatchGame.generateCardValues = function () {
   var numPairs = numCards/2;
 
   try {
-    if(Math.floor(numPairs) === numPairs) throw 'not an even number: ' + numPairs;
+    if(Math.floor(numPairs) != numPairs) throw 'not an even number: ' + numPairs;
   } catch (e) {
     console.log(e);
   } finally {

@@ -9,15 +9,9 @@ $(document).ready( function () {
 function createMenu() {
   var ruleModalOptions = {
     url: 'resources/html/rules.html',
-		// height: '500',
-		// width: '80%',
-    // top: '10%',
-    // left: '10%',
   };
   var settingsModalOptions = {
     Title: 'Settings',
-		// height: '500',
-		// width: '800'
   };
 
 	$('.rule').custom_modal_box(ruleModalOptions);
