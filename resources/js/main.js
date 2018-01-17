@@ -11,7 +11,7 @@ function createMenu() {
     url: 'resources/html/rules.html',
   };
   var settingsModalOptions = {
-    Title: 'Settings',
+    title: 'Settings',
   };
 
 	$('.rule').custom_modal_box(ruleModalOptions);
