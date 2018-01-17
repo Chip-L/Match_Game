@@ -2,6 +2,8 @@
  * from https://paulund.co.uk/how-to-create-a-simple-modal-box-with-jquery
  * The one on the site is not responsive. I had to make it responsive.
  * The only properties exposed right now are position, size, and content. Since site design is done more or less globaly, I figure it is fine to just modify colors directly here. I could add the colors to be modifiable too, but pretty soon, I'm adding the entire CSS. This is the problem with this template. This CAN still be overridden by the site's CSS.
+
+ This isn't working right now because the original code only creates the dialog off of a click. There is no way to programatically populate the dialog. Maybe this will work with .trigger();
  */
 (function($){
 
@@ -20,17 +22,23 @@
       // position of the outer window
 			top: "20%",
 			left: "10%",
-      //
 		},prop);
 
 		return this.click(function(e){
+      show_modal_box();
+		});
+
+    /*
+      drawes the modal box on the screen
+    */
+    function show_modal_box() {
       add_block_page();
-    	add_popup_box();
-    	add_styles();
+      add_popup_box();
+      add_styles();
       // checkNeedScroll();
 
-	    $('.custom_modal_box').fadeIn();
-		});
+      $('.custom_modal_box').fadeIn();
+    }
 
     /*
       adds the dark background
@@ -104,8 +112,8 @@
     		'left':options.left,
     		'top':options.top,
 
-        'height': 'auto',
-        'width': 'auto',
+        'height': options.height,
+        'width': options.width,
     		'max-height': outerHeight,
     		'max-width': outerWidth,
 
