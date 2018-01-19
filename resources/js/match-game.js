@@ -3,7 +3,7 @@ var MatchGame = {};
 MatchGame.clickCount = 0;
 MatchGame.interval; // used to track the timeout function
 MatchGame.rows = 2;
-MatchGame.cols = 2;
+MatchGame.cols = 3;
 
 /*
   Executes the game. Sets up the board and resets the clickCount.
@@ -49,7 +49,7 @@ MatchGame.generateCardValues = function () {
     arrOrdered.splice(index, 1);
   }
 
-  console.log(arrRandom);
+  // console.log(arrRandom);
   return(arrRandom);
 };
 
@@ -242,6 +242,9 @@ MatchGame.createWinDesc = function() {
 }
 
 MatchGame.closeWin = function() {
-  $('.custom_modal_close').trigger('click');
-  MatchGame.playGame();
+  $('.custom_modal_close').triggerHandler('click').then(function() {
+       MatchGame.playGame();
+   });
+  // $('.custom_modal_close').trigger('click');
+  // setTimeout(MatchGame.playGame, 500);
 }

@@ -180,9 +180,12 @@
       separate close so that it can be accessed by other buttons/functions
     */
     function modal_close() {
+      return $('.custom_block_page').add($(this).parent()).fadeOut().promise().then(function() {
+        $(this).remove();
+    });
 
-      $('.custom_block_page').fadeOut().remove();
-      $(this).parent().fadeOut().remove();
+      // $('.custom_block_page').fadeOut().remove();
+      // $(this).parent().fadeOut().remove();
     };
 
     /*
