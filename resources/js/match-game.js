@@ -245,6 +245,7 @@ MatchGame.closeWin = function() {
   $('.custom_modal_close').triggerHandler('click').then(function() {
        MatchGame.playGame();
    });
+   
   // $('.custom_modal_close').trigger('click');
   // setTimeout(MatchGame.playGame, 500);
 }
