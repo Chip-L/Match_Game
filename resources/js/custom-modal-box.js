@@ -34,12 +34,55 @@
       drawes the modal box on the screen
     */
     function show_modal_box() {
-      add_block_page();
-      add_popup_box();
-      add_styles();
-      // checkNeedScroll();
+      var $block_page = $('<div class="custom_block_page"></div>').appendTo('body'); // dark background
+   var $pop_up = $('<div class="custom_modal_box"></div>').appendTo($block_page);
+   var $close = $('<a href="#" class="custom_modal_close"></a>').appendTo($pop_up);
+   var $inner = $('<div class="custom_inner_modal_box">loading...</div>').appendTo($pop_up);
+   if(options.name != '') {
+       $pop_up.attr('id', options.name);
+   }
 
-      $('.custom_modal_box').fadeIn();
+   // Add the content - if url, load the page otherwise use the text
+   if (options.url != '') {
+       $inner.load(options.url);
+   } else {
+       var innerHTML = '';
+       if(options.title[0] === "<") { // assume formatting
+           innerHTML += options.title;
+       } else {
+           innerHTML += '<h2>' + options.title + '</h2>';
+       }
+       if(options.description[0] === "<") {
+           innerHTML += options.description;
+       } else {
+           innerHTML += '<p>' + options.description + '</p>';
+       }
+       $inner.html(innerHTML);
+   }
+
+   $close.click(function() {
+       // for example      
+      console.log("started...");
+      return $pop_up.fadeOut().promise().done(function() {
+        $pop_up.remove()
+        console.log("$pop_up gone");
+
+        $block_page.remove();
+        console.log("$block_page gone");
+
+        console.log("Finished!");
+      });
+   });
+   $(window).off('resize.popup').on('resize.popup', add_styles).trigger('resize.popup'); // prevent accumulation of resize handlers
+
+   // checkNeedScroll();
+   $pop_up.fadeIn();
+      // add_block_page();
+      // add_popup_box();
+      // add_styles();
+      // // checkNeedScroll();
+      //
+      // $('.custom_modal_box').fadeIn();
     }
 
     /*
@@ -183,6 +226,7 @@
       return $('.custom_block_page').add($(this).parent()).fadeOut().promise().then(function() {
         $(this).remove();
     });
+
 
       // $('.custom_block_page').fadeOut().remove();
       // $(this).parent().fadeOut().remove();

@@ -9,6 +9,7 @@ $(document).ready( function () {
 function createMenu() {
   var ruleModalOptions = {
     url: 'resources/html/rules.html',
+    name: 'rules',
   };
   var settingsModalOptions = {
     title: 'Settings',
