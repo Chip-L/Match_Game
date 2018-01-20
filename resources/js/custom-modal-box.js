@@ -61,14 +61,10 @@
    }
 
    $close.click(function() {
-       // for example      
+       // for example
       console.log("started...");
       return $pop_up.fadeOut().promise().done(function() {
-        $pop_up.remove()
-        console.log("$pop_up gone");
-
         $block_page.remove();
-        console.log("$block_page gone");
 
         console.log("Finished!");
       });
