@@ -26,7 +26,7 @@
 			left: "10%",
 		},prop);
 
-		return this.click(function(e){
+	  return this.off('click.popup').on('click.popup', function(e) {
       show_modal_box();
 		});
 
@@ -38,7 +38,7 @@
       var $pop_up = $('<div class="custom_modal_box"></div>').appendTo($block_page);
       var $close = $('<a href="#" class="custom_modal_close"></a>').appendTo($pop_up);
       var $inner = $('<div class="custom_inner_modal_box">loading...</div>').appendTo($pop_up);
-      
+
       if(options.name != '') {
          $pop_up.attr('id', options.name);
       }
