@@ -3,7 +3,7 @@ var MatchGame = {};
 MatchGame.clickCount = 0;
 MatchGame.interval; // used to track the timeout function
 MatchGame.rows = 2;
-MatchGame.cols = 3;
+MatchGame.cols = 2;
 
 /*
   Executes the game. Sets up the board and resets the clickCount.
@@ -18,6 +18,18 @@ MatchGame.playGame = function () {
   var values = MatchGame.generateCardValues();
 
   MatchGame.renderCards(values, $game);
+};
+
+MatchGame.getRowsCols = function () {
+  return ({
+    rows: MatchGame.rows,
+    cols: MatchGame.cols,
+  });
+};
+
+MatchGame.setRowsCols = function (objRowsCols) {
+  MatchGame.rows = objRowsCols.rows;
+  MatchGame.cols = objRowsCols.cols;
 }
 
 /*
