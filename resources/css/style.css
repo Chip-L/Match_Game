@@ -137,8 +137,77 @@ li a {
   padding-top: 100%;
 }
 
-/******************* Custom Modal Dialog additional formats *******************/
+/**************************** Custom Modal Dialog  ****************************/
+/* covers the background */
+.custom_block_page {
+  display: none;
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
 
+  height: 100vh;
+  width: 100vw;
+
+  background-color: rgba(0,0,0,0.6);
+}
+
+/* outer box ($pop_up) */
+.custom_modal_box {
+  display: none;
+  z-index: 50;
+  position: absolute;
+  left: 10%;
+  top: 20%;
+
+  height: auto;
+  width: 80%;
+
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 7px #292929;
+    -moz-box-shadow: 0px 2px 7px #292929;
+    -webkit-box-shadow: 0px 2px 7px #292929;
+  border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+
+  /* this color is based off of the background color in the inner at .5 opacity (opacity won't work here without using RGBA) */
+  background: #aba4a4;
+}
+
+/* inner box */
+.custom_inner_modal_box {
+  height: calc(100% - 50px);
+  width: calc(100% - 50px);
+  padding: 10px;
+  margin: 15px;
+  /* overflow: visible; */
+
+  border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+
+  /* customize this for the site */
+  background-color: #F1E8E8;
+}
+
+/* close button (floats up and to the right) */
+.custom_modal_close {
+  display: block;
+  position: relative;
+  float: right;
+  top: -25px;
+  left: 20px;
+
+  height: 50px;
+  width: 50px;
+
+  background: url('./resources/images/Actions-window-close-icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/******************* Custom Modal Dialog additional formats *******************/
 #playAgain .custom_inner_modal_box {
   text-align: center;
 }
