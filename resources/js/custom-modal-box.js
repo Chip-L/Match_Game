@@ -35,100 +35,43 @@
     */
     function show_modal_box() {
       var $block_page = $('<div class="custom_block_page"></div>').appendTo('body'); // dark background
-   var $pop_up = $('<div class="custom_modal_box"></div>').appendTo($block_page);
-   var $close = $('<a href="#" class="custom_modal_close"></a>').appendTo($pop_up);
-   var $inner = $('<div class="custom_inner_modal_box">loading...</div>').appendTo($pop_up);
-   if(options.name != '') {
-       $pop_up.attr('id', options.name);
-   }
-
-   // Add the content - if url, load the page otherwise use the text
-   if (options.url != '') {
-       $inner.load(options.url);
-   } else {
-       var innerHTML = '';
-       if(options.title[0] === "<") { // assume formatting
-           innerHTML += options.title;
-       } else {
-           innerHTML += '<h2>' + options.title + '</h2>';
-       }
-       if(options.description[0] === "<") {
-           innerHTML += options.description;
-       } else {
-           innerHTML += '<p>' + options.description + '</p>';
-       }
-       $inner.html(innerHTML);
-   }
-
-   $close.click(function() {
-       // for example
-      console.log("started...");
-      return $pop_up.fadeOut().promise().done(function() {
-        $block_page.remove();
-
-        console.log("Finished!");
-      });
-   });
-   $(window).off('resize.popup').on('resize.popup', add_styles).trigger('resize.popup'); // prevent accumulation of resize handlers
-
-   // checkNeedScroll();
-   $pop_up.fadeIn();
-      // add_block_page();
-      // add_popup_box();
-      // add_styles();
-      // // checkNeedScroll();
-      //
-      // $('.custom_modal_box').fadeIn();
-    }
-
-    /*
-      adds the dark background
-    */
-    function add_block_page(){
-    	var block_page = $('<div class="custom_block_page"></div>');
-
-    	$(block_page).appendTo('body');
-    }
-
-    /*
-      adds the actual popup box
-    */
-    function add_popup_box(){
-      var $pop_up = $('<div class="custom_modal_box"></div>');
-      var $close = $('<a href="#" class="custom_modal_close"></a>');
-      var $inner = $('<div class="custom_inner_modal_box"></div>');
-
-      if(options.name != "") {
-        $pop_up.attr('id', options.name);
+      var $pop_up = $('<div class="custom_modal_box"></div>').appendTo($block_page);
+      var $close = $('<a href="#" class="custom_modal_close"></a>').appendTo($pop_up);
+      var $inner = $('<div class="custom_inner_modal_box">loading...</div>').appendTo($pop_up);
+      
+      if(options.name != '') {
+         $pop_up.attr('id', options.name);
       }
 
       // Add the content - if url, load the page otherwise use the text
-      if (options.url != "") {
-        $inner.load(options.url);
+      if (options.url != '') {
+         $inner.load(options.url);
       } else {
-        var innerText = '';
-
-        if(options.title[0] === "<") { // assume formatting
-          innerText += options.title;
-        } else {
-          innerText += '<h2>' + options.title + '</h2>';
-        }
-        if(options.description[0] === "<") {
-          innerText += options.description;
-        } else {
-          innerText += '<p>' + options.description + '</p>';
-        }
-
-        $inner.append(innerText);
+         var innerHTML = '';
+         if(options.title[0] === "<") { // assume formatting
+             innerHTML += options.title;
+         } else {
+             innerHTML += '<h2>' + options.title + '</h2>';
+         }
+         if(options.description[0] === "<") {
+             innerHTML += options.description;
+         } else {
+             innerHTML += '<p>' + options.description + '</p>';
+         }
+         $inner.html(innerHTML);
       }
 
-      $pop_up.append($close).append($inner);
+      $close.click(function() {
+        //https://stackoverflow.com/questions/48308960/my-remove-event-isnt-working
+        return $block_page.fadeOut("slow",function() {
+          $(this).remove();
+        });
+      });
 
-    	$pop_up.appendTo('.custom_block_page');
+      $(window).off('resize.popup').on('resize.popup', add_styles).trigger('resize.popup'); // prevent accumulation of resize handlers
 
-    	$('.custom_modal_close').click(modal_close);
-
-      $(window).resize(add_styles);
+      // checkNeedScroll();
+      $pop_up.fadeIn();
     }
 
     /*

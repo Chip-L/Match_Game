@@ -242,10 +242,11 @@ MatchGame.createWinDesc = function() {
 }
 
 MatchGame.closeWin = function() {
-  $('.custom_modal_close').triggerHandler('click').then(function() {
-       MatchGame.playGame();
-   });
-   
-  // $('.custom_modal_close').trigger('click');
-  // setTimeout(MatchGame.playGame, 500);
+  // https://stackoverflow.com/questions/48308960/my-remove-event-isnt-working
+  // $('.custom_modal_close').triggerHandler('click').then(function() {
+  //      MatchGame.playGame();
+  //  });
+
+  $('.custom_modal_close').trigger('click');
+  MatchGame.playGame();
 }
