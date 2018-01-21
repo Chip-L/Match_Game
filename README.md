@@ -19,6 +19,7 @@ To do list:
 - [ ] \* Add sound effects
   - [ ] flipping
   - [ ] dealing
+  - [ ] background music
 - [ ] \* Add animations
   - [ ] flipping
   - [ ] dealing
