@@ -75,6 +75,10 @@ Code wise, this shouldn't be that difficult. The design is the tough part. I'm t
   * At this point, Bootstrap isn't offering a lot of value. I think rows of flexboxes might work better and give more flexibility. It would also reduce the amount of html code needed to render the page.
   * this will allow more cards to display at a time (not confined to 12 across)
 
-I had some troubles with the custom_modal_box but we finally found the problem. See https://stackoverflow.com/questions/48308960/my-remove-event-isnt-working for that discussion.
+I had some troubles with the custom_modal_box but we finally found the problem. See https://stackoverflow.com/questions/48308960/my-remove-event-isnt-working for that discussion. In the end, I have removed this plugin altogether. it has proven more trouble than it is worth.
+
+To that end, I added another module UI, it is handling all of the display events. Including the new modal dialog. This has allowed me to consolidate the click events and the code seems much more readable now. (considering moving the show/hide card functions to there.)
+
+I briefly dabbled with changing things to _IIFE_ functions and name spaces (like bubbleshooter), but that was giving me problems, I stopped that and went back to the way I have been doing things. 
 
 Note: adding a non-breaking space (&nbsp;) to the cards keeps them a consistent size I need a better solution than this.
