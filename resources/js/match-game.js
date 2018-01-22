@@ -20,6 +20,9 @@ MatchGame.playGame = function () {
   MatchGame.renderCards(values, $game);
 };
 
+/*
+  returns an object containing the rows and cols currently set
+*/
 MatchGame.getRowsCols = function () {
   return ({
     rows: MatchGame.rows,
@@ -27,6 +30,9 @@ MatchGame.getRowsCols = function () {
   });
 };
 
+/*
+  takes an object with rows and cols and sets the MatchGame.rows and MatchGame.cols variables
+*/
 MatchGame.setRowsCols = function (objRowsCols) {
   MatchGame.rows = objRowsCols.rows;
   MatchGame.cols = objRowsCols.cols;
