@@ -187,9 +187,7 @@ MatchGame.checkWin = function ($game) {
   if(flippedCount === flipsNeeded) {
     Timer.stopTimer();
 
-    setTimeout( function () {
       ui.showWin(MatchGame.createWinDesc());
-    }, 500);
   }
 } // end MatchGame.checkWin
 

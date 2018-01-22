@@ -33,11 +33,17 @@ ui.showSettings = function () {
 };
 
 ui.showWin = function (customContnent) {
-  $('.custom_inner_modal_box').load('./resources/html/win.html');
+  $('.custom_inner_modal_box').html(
+    '<div id="playAgain">' +
+      '<h1>You win!</h1>' +
+      '<h2 id="custom-content">' + customContnent + '</h2>' +
+      '<button type="button" class="btn-info" onclick="ui.closeWin()">' +
+        'Play Again' +
+      '</button>' +
+    '</div>'
+  );
 
-  ui.openModal(function () {
-    $('#custom-content').text(customContnent);
-  });
+  ui.openModal();
 }
 
 ui.closeWin = function() {
