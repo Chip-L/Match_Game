@@ -18,11 +18,11 @@ h1 {
 h2 {
   font-size: 1.5rem;
   font-weight: bold;
-  padding: 1rem 0;
 }
 
 p {
   color: rgb(74, 74, 74);
+  padding: 1rem;
 }
 
 /******************************* Tags in Header *******************************/
@@ -177,10 +177,11 @@ li a {
 
 /* inner box */
 .custom_inner_modal_box {
-  height: calc(100% - 50px);
-  width: calc(100% - 50px);
-  padding: 10px;
-  margin: 15px;
+  /* height & width need to subtract the sum of padding + margin */
+  height: calc(100% - 60px);
+  width: calc(100% - 60px);
+  padding: 15px;
+  margin: 15px; /* outside of the box's border */
   /* overflow: visible; */
 
   border-radius: 10px;
