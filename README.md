@@ -58,20 +58,20 @@ Note: This works because objects (and arrays) are passed around by passing a cop
 
 ## Board size
 Code wise, this shouldn't be that difficult. The design is the tough part. I'm thinking that this may require me to add a menu with a settings screen.
-* Step 1: Change the left column in to a header and add a footer
+* [ ] Step 1: Change the left column in to a header and add a footer
   * "Match Game" will be the title.
   * In tablet+ mode, the Rules will be one menu item and then we can have a settings item (gear?)
-  * In mobile, the rules and settings will go in to a hamburger menu.
+  * ~~In mobile, the rules and settings will go in to a hamburger menu.~~ The rules and settings will just go down to their icons.
   * Add a footer (put the timer in here and a link to my GitHub landing page)
-* Step 2: fix the Board
+* [ ] Step 2: fix the Board
   * The board needs to display entirely on the screen - always! No more scrolling to get to the cards.
   * The font in the cards needs to scale with the card size
   * Make all cards square - this will require column width and row height to be equal.
-* Step 3: Code
+* [ ] Step 3: Code
   * create the selectors for the board: height and width - These can go from 2-12
   * on the board render make the card sizes based off of the multiples of these numbers (col-xs-12)
   * add more colors for the cards
-* Step 4: Consider taking out of bootstrap.
+* [x] Step 4: Consider taking out of bootstrap.
   * At this point, Bootstrap isn't offering a lot of value. I think rows of flexboxes might work better and give more flexibility. It would also reduce the amount of html code needed to render the page.
   * this will allow more cards to display at a time (not confined to 12 across)
 
@@ -79,6 +79,6 @@ I had some troubles with the custom_modal_box but we finally found the problem. 
 
 To that end, I added another module UI, it is handling all of the display events. Including the new modal dialog. This has allowed me to consolidate the click events and the code seems much more readable now. (considering moving the show/hide card functions to there.)
 
-I briefly dabbled with changing things to _IIFE_ functions and name spaces (like bubbleshooter), but that was giving me problems, I stopped that and went back to the way I have been doing things. 
+I briefly dabbled with changing things to _IIFE_ functions and name spaces (like bubbleshooter), but that was giving me problems, I stopped that and went back to the way I have been doing things.
 
 Note: adding a non-breaking space (&nbsp;) to the cards keeps them a consistent size I need a better solution than this.
