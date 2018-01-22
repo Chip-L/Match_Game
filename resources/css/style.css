@@ -112,36 +112,13 @@ footer a {
   margin-right: 1.5rem;
 }
 
-@media screen and (min-width: 445px) {
-  h1 {
-    font-size: 2.5rem;
-  }
-
-  header,
-  footer {
-    height: 4rem;
-  }
-
-  .game-board {
-    padding: 4.5rem 0;
-  }
-}
-
-@media screen and (min-width: 778px) {
-  .desktop-menu {
-    display: inherit;
-  }
-
-  .mobile-menu {
-    display: none;
-  }
-}
-
 /***************************** Tags in Game Board *****************************/
 .game-board {
-  padding: 3.5rem 0;
-  margin: 5px auto;
+  padding: 3rem 0.5rem;
+  margin: 0.5rem auto;
   width: 500px;
+  max-height: calc(100vh - (2 * 3.5rem));
+  max-width: calc(100vw - (2 * 0.5rem));
 }
 
 .game-row {
@@ -323,3 +300,30 @@ active: #31b0d5/#269abc
 focus: #31b0d5/#1b6d85
 other: #269abc/#1b6d85
 */
+
+
+@media screen and (min-width: 445px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  header,
+  footer {
+    height: 4rem;
+  }
+
+  .game-board {
+    padding: 4rem 0.5rem;
+    max-height: calc(100vh - (2 * 4.5rem));
+  }
+}
+
+@media screen and (min-width: 778px) {
+  .desktop-menu {
+    display: inherit;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+}
