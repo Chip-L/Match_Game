@@ -116,14 +116,14 @@ footer a {
 .game-board {
   padding: 3rem 0.5rem;
   margin: 0.5rem auto;
-  width: 500px;
+  overflow: hidden;
   max-height: calc(100vh - (2 * 3.5rem));
   max-width: calc(100vw - (2 * 0.5rem));
 }
 
 .game-row {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 
   padding: 0;
   margin: 0;
@@ -134,8 +134,10 @@ footer a {
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 
-  height: auto;
+  height: 100%;
+  width: 100%;
   margin: 0;
 
   border: 4px solid #ffffff;

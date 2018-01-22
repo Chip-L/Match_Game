@@ -6,7 +6,7 @@ ui.init = function () {
 
   $('.custom_modal_close').click(ui.closeModal);
 
-  ui.boardSize();
+  // ui.boardSize();
 };
 
 ui.openModal = function (callback) {
@@ -53,19 +53,32 @@ ui.closeWin = function() {
   MatchGame.playGame();
 };
 
+/*
+  sets up the size of the board. This will set the game-row height, the card width, and the fontSize
+*/
 ui.boardSize = function () {
   var $board = $('.game-board');
-  var maxWidthPx = $board.css('max-width');
-  var maxHeightPx = $board.css('max-height');
-  var maxWidthObj = ui.getValue(maxWidthPx);
-  var maxHeightObj = ui.getValue(maxHeightPx);
+  var maxWidth = parseInt($board.css('max-width'));
+  var maxHeight = parseInt($board.css('max-height'));
+  var objRowsCols = MatchGame.getRowsCols();
+  var cols = objRowsCols.cols;
+  var rows = objRowsCols.rows;
+  var sq = 0;
 
-  if(maxWidthObj.number > maxHeightObj.number) {
-    $board.width(maxHeightPx);
+  // determine the size of the square
+  if((maxWidth / cols) > (maxHeight / rows)) {
+    sq = maxHeight / rows;
   } else {
-    $board.width(maxWidthPx);
+    sq = maxWidth / cols;
   }
+
+  $('.game-row').css('max-height', sq);
+  $('.card').css({
+    'max-width': sq,
+    'font-size': (sq * 0.7),
+  });
 };
+
 
 ui.getValue = function (value) {
   var myRegEx = /[a-zA-Z]+$|%$/ ;

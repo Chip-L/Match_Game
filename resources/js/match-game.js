@@ -2,8 +2,8 @@ var MatchGame = {};
 
 MatchGame.clickCount = 0;
 MatchGame.interval; // used to track the timeout function
-MatchGame.rows = 2;
-MatchGame.cols = 2;
+MatchGame.rows = 4;
+MatchGame.cols = 4;
 
 /*
   Executes the game. Sets up the board and resets the clickCount.
@@ -91,8 +91,6 @@ MatchGame.renderCards = function(cardValues, $game) {
   $game.empty();
   $game.data('flippedCards', []);
 
-  // TODO: Set .game-board height (by setting the width? Orientation dependent?)
-
   for(var r = 0; r < MatchGame.rows; r++) {
     var $row = $('<div class="game-row"></div>');
 
@@ -110,6 +108,9 @@ MatchGame.renderCards = function(cardValues, $game) {
 
     $row.appendTo($game);
   }
+
+  // sets boardSize now that content has been added
+  ui.boardSize();
 
   // appends to ALL cards at the same time
   $('.card').click(function (event) {
