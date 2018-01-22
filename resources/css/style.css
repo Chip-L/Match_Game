@@ -27,7 +27,12 @@ p {
 
 /******************************* Tags in Header *******************************/
 header {
-  box-shadow: 0 1px 1px #ccc;
+  position: fixed;
+  height: 3rem;
+  width: 100%;
+  top: 0;
+
+  border-bottom: 1px solid #ccc;
   padding: 0.5rem 0 1rem 0;
   margin-bottom: 0.5rem;
   box-sizing: border-box;
@@ -78,9 +83,47 @@ li a {
   display: none;
 }
 
+footer {
+  position: absolute;
+  height: 3rem;
+  width: 100%;
+  bottom: 0;
+
+  border-top: 1px solid #ccc;
+  padding: 1rem 0 0.5rem 0;
+  /* margin-top: 0.5rem; */
+  box-sizing: border-box;
+}
+
+.footer-limiter {
+  max-width: 1200px; /* limits the width of the header content */
+  text-align: center;
+  margin: 0 auto;
+  /* display: flex;
+  justify-content: space-between; */
+}
+
+.timer {
+  display: block;
+}
+
+footer a {
+  float: right;
+  margin-right: 1.5rem;
+}
+
 @media screen and (min-width: 445px) {
   h1 {
     font-size: 2.5rem;
+  }
+
+  header,
+  footer {
+    height: 4rem;
+  }
+
+  .game-board {
+    padding: 4.5rem 0;
   }
 }
 
@@ -96,6 +139,7 @@ li a {
 
 /***************************** Tags in Game Board *****************************/
 .game-board {
+  padding: 3.5rem 0;
   margin: 5px auto;
   width: 500px;
 }
