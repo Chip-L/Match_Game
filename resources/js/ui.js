@@ -5,6 +5,8 @@ ui.init = function () {
   $('.settings').click(ui.showSettings);
 
   $('.custom_modal_close').click(ui.closeModal);
+
+  ui.boardSize();
 };
 
 ui.openModal = function (callback) {
@@ -47,11 +49,27 @@ ui.showWin = function (customContnent) {
 }
 
 ui.closeWin = function() {
-  // https://stackoverflow.com/questions/48308960/my-remove-event-isnt-working
-  // $('.custom_modal_close').triggerHandler('click').then(function() {
-  //      MatchGame.playGame();
-  //  });
-
   $('.custom_modal_close').trigger('click');
   MatchGame.playGame();
-}
+};
+
+ui.boardSize = function () {
+  var $board = $('.game-board');
+  var maxWidthPx = $board.css('max-width');
+  var maxHeightPx = $board.css('max-height');
+  var maxWidthObj = ui.getValue(maxWidthPx);
+  var maxHeightObj = ui.getValue(maxHeightPx);
+
+  if(maxWidthObj.number > maxHeightObj.number) {
+    $board.width(maxHeightPx);
+  } else {
+    $board.width(maxWidthPx);
+  }
+};
+
+ui.getValue = function (value) {
+  var myRegEx = /[a-zA-Z]+$|%$/ ;
+  var unit = myRegEx.exec(value)[0];
+  var num = value.replace(unit, "");
+  return({number: num, unit: unit});
+};
