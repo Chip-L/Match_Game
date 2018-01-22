@@ -202,7 +202,7 @@ li a {
   height: 50px;
   width: 50px;
 
-  background: url('./resources/images/Actions-window-close-icon.png');
+  background: url('../images/Actions-window-close-icon.png');
   background-size: contain;
   background-repeat: no-repeat;
 }
