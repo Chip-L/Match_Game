@@ -188,14 +188,7 @@ MatchGame.checkWin = function ($game) {
     Timer.stopTimer();
 
     setTimeout( function () {
-      var winModalOptions = {
-        name: 'playAgain',
-        title: '<h1>You win!</h1>',
-        description: MatchGame.createWinDesc(),
-      };
-
-      $('.win').custom_modal_box(winModalOptions);
-      $('.win').trigger('click');
+      ui.showWin(MatchGame.createWinDesc());
     }, 500);
   }
 } // end MatchGame.checkWin
@@ -234,9 +227,7 @@ MatchGame.showResetCard = function ($card) {
 */
 MatchGame.createWinDesc = function() {
   var t = Timer.getTimeObj();
-  var displayText =
-    '<div id="custom-content">' +
-      '<h2>It took you ' + MatchGame.clickCount + ' clicks in ';
+  var displayText ='It took you ' + MatchGame.clickCount + ' clicks in ';
 
   if(t.hours > 0) {
     displayText += t.hours + ' hours, ';
@@ -246,19 +237,7 @@ MatchGame.createWinDesc = function() {
   }
   displayText += t.seconds + ' seconds ';
 
-  displayText += ' to beat the game.</h2>' +
-    '</div>' +
-    '<button type="button" class="btn-info" onclick="MatchGame.closeWin()">Play Again</button>';
+  displayText += ' to beat the game.';
 
   return (displayText);
-}
-
-MatchGame.closeWin = function() {
-  // https://stackoverflow.com/questions/48308960/my-remove-event-isnt-working
-  // $('.custom_modal_close').triggerHandler('click').then(function() {
-  //      MatchGame.playGame();
-  //  });
-
-  $('.custom_modal_close').trigger('click');
-  MatchGame.playGame();
 }

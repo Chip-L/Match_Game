@@ -208,7 +208,7 @@ li a {
 }
 
 /******************* Custom Modal Dialog additional formats *******************/
-#playAgain .custom_inner_modal_box {
+#playAgain {
   text-align: center;
 }
 

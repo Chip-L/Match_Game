@@ -7,9 +7,10 @@ ui.init = function () {
   $('.custom_modal_close').click(ui.closeModal);
 };
 
-ui.openModal = function () {
+ui.openModal = function (callback) {
+
   $('.custom_block_page').fadeIn(600);
-  $('.custom_modal_box').fadeIn(600);
+  $('.custom_modal_box').fadeIn(600, callback);
 };
 
 ui.closeModal = function () {
@@ -30,3 +31,21 @@ ui.showSettings = function () {
 
   ui.openModal();
 };
+
+ui.showWin = function (customContnent) {
+  $('.custom_inner_modal_box').load('./resources/html/win.html');
+
+  ui.openModal(function () {
+    $('#custom-content').text(customContnent);
+  });
+}
+
+ui.closeWin = function() {
+  // https://stackoverflow.com/questions/48308960/my-remove-event-isnt-working
+  // $('.custom_modal_close').triggerHandler('click').then(function() {
+  //      MatchGame.playGame();
+  //  });
+
+  $('.custom_modal_close').trigger('click');
+  MatchGame.playGame();
+}
