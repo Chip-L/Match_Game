@@ -1,6 +1,6 @@
 <div id="settings">
   <h1>Settings</h1>
-  <form class="" action="index.html" method="post">
+  <form action="javascript:closeSettings();">
     <fieldset>
       <legend>Board Size</legend>
 
@@ -21,7 +21,7 @@
       </select>
       <br>
       <label for="cols">How many columns?&nbsp;</label>
-      <select class="rows" name="rows">
+      <select class="cols" name="cols">
         <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
@@ -36,7 +36,9 @@
         <option value="13">13</option>
       </select><br>
       <br>
-      <input  class="btn-info" type="submit" value="Submit">
+      <button class="btn-info" type="button" onclick="ui.closeSettings()">
+        Submit
+      </button>
     </fieldset>
   </form>
 </div>

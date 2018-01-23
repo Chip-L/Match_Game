@@ -32,6 +32,7 @@ ui.showSettings = function () {
   $('.custom_inner_modal_box').load('./resources/html/settings.html');
 
   ui.openModal();
+
 };
 
 ui.showWin = function (customContnent) {
@@ -52,6 +53,23 @@ ui.closeWin = function() {
   $('.custom_modal_close').trigger('click');
   MatchGame.playGame();
 };
+
+ui.closeSettings = function () {
+  var row = $('.rows').find(":selected").val();
+  var col = $('.cols').find(":selected").val();
+
+  console.log({
+    rows: row,
+    cols: col
+  });
+  MatchGame.setRowsCols({
+    rows: row,
+    cols: col
+  });
+
+  $('.custom_modal_close').trigger('click');
+  MatchGame.playGame();
+}
 
 /*
   sets up the size of the board. This will set the game-row height, the card width, and the fontSize
