@@ -2,8 +2,8 @@ var MatchGame = {};
 
 MatchGame.clickCount = 0;
 MatchGame.interval; // used to track the timeout function
-MatchGame.rows = 4;
-MatchGame.cols = 4;
+MatchGame.rows = 3;
+MatchGame.cols = 3;
 
 /*
   Executes the game. Sets up the board and resets the clickCount.
@@ -53,7 +53,7 @@ MatchGame.generateCardValues = function () {
   } catch (e) {
     console.log(e);
   } finally {
-    numPairs = Math.ceil(numPairs); // adds extra cards if nothing else
+    numPairs = Math.trunc(numPairs); // removes extra cards if nothing else
   }
 
   for(var i=0; i < numPairs; i++) {
@@ -96,26 +96,29 @@ MatchGame.renderCards = function(cardValues, $game) {
 
     for (var c = 0; c < MatchGame.cols; c++) {
       var $card = $('<div class="card">&nbsp;</div>');
-      $card.data({
-        'value': cardValues[cardIndex],
-        'color': colorValue[ cardValues[cardIndex] - 1 ],
-        'isFlipped': false,
-      });
+      if (cardIndex != cardValues.length) {
+        $card.data({
+          'value': cardValues[cardIndex],
+          'color': colorValue[ cardValues[cardIndex] - 1 ],
+          'isFlipped': false,
+        });
+        // assign to individual cards so the empty doesn't get it
+        $card.click(function (event) {
+          MatchGame.flipCard($(this), $game);
+        });
+      } else {
+        $card.addClass('empty');
+      }
 
       $card.appendTo($row);
       cardIndex++;
-    }
+    } // end for col
 
     $row.appendTo($game);
-  }
+  } // end for row
 
   // sets boardSize now that content has been added
   ui.boardSize();
-
-  // appends to ALL cards at the same time
-  $('.card').click(function (event) {
-    MatchGame.flipCard($(this), $game);
-  })
 };
 
 /*
@@ -179,7 +182,7 @@ MatchGame.flipCard = function ($card, $game) {
 */
 MatchGame.checkWin = function ($game) {
   // console.log("checkWin");
-  var flipsNeeded = MatchGame.rows * MatchGame.cols;
+  var flipsNeeded = Math.trunc((MatchGame.rows * MatchGame.cols) / 2) * 2;
   var flippedCount = 0;
 
   $('.card').each( function () {

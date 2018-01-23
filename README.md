@@ -11,7 +11,7 @@ To do list:
 - [x] ~~* Add a "Restart Game" button~~ (completed Jan 7, 2018)
   - [ ] add fireworks to win screen
 - [x] ~~* Only allow two cards to be visible at a time (currently the setTimeout allows users to click really quickly and see a few)~~ (completed Jan 13, 2018)
-- [ ] \* Allow user to select from multiple board sizes
+- [x] \* Allow user to select from multiple board sizes (completed Jan 22, 2018)
   - [x] adjust font size to keep cards square ~~(start here: https://stackoverflow.com/questions/16056591/font-scaling-based-on-width-of-container)~~ (completed Jan 21, 2018)
   - [ ] Make settings pause timer.
   - [ ] If changes are done midgame, warn that game will be reset
@@ -89,3 +89,5 @@ I got the columns and rows to resize properly. I need to add in a resize functio
 
 (Jan 22, 2018)
 I got the settings dialog working. It turns out that the reset.css resets the fieldset properties. I had to add them back in. I just need to fix the board to be able to deal with an odd number of squares. I think I will just have it drop off the last match.
+
+I fixed the odd number of squares by allowing the squares. I only set up the correct number of matches. Then if there are too many columns than there are matches (the last row/col), then I put in a card that has an "empty" class on it. The "empty" class just turns the card's colors back to the background. I also had to attach the click event to each card rather than all at the same time (I don't think this particularly matters).
