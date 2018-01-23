@@ -31,7 +31,12 @@ ui.showRules = function () {
 ui.showSettings = function () {
   $('.custom_inner_modal_box').load('./resources/html/settings.html');
 
-  ui.openModal();
+  ui.openModal( function () {
+    var objRowsCols = MatchGame.getRowsCols();
+
+    $('.rows option[value="' + objRowsCols.rows + '"]').attr("selected",true);
+    $('.cols option[value="' + objRowsCols.cols + '"]').attr("selected",true);
+  } );
 
 };
 
