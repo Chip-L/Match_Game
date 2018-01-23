@@ -11,10 +11,11 @@ To do list:
 - [x] ~~* Add a "Restart Game" button~~ (completed Jan 7, 2018)
   - [ ] add fireworks to win screen
 - [x] ~~* Only allow two cards to be visible at a time (currently the setTimeout allows users to click really quickly and see a few)~~ (completed Jan 13, 2018)
-- [x] \* Allow user to select from multiple board sizes (completed Jan 22, 2018)
-  - [x] adjust font size to keep cards square ~~(start here: https://stackoverflow.com/questions/16056591/font-scaling-based-on-width-of-container)~~ (completed Jan 21, 2018)
+- [x] ~~* Allow user to select from multiple board sizes~~ (completed Jan 22, 2018)
+  - [x] ~~adjust font size to keep cards square~~ ~~(start here: https://stackoverflow.com/questions/16056591/font-scaling-based-on-width-of-container)~~ (completed Jan 21, 2018)
   - [ ] Make settings pause timer.
   - [ ] If changes are done midgame, warn that game will be reset
+  - [ ] Add more colors
 - [ ] \* Change card values to non-number values (images)
 - [x] ~~* Add score or time:~~
   - [x] ~~clicks~~ (completed Jan 7, 2018)
@@ -70,7 +71,7 @@ Code wise, this shouldn't be that difficult. The design is the tough part. I'm t
   * The board needs to display entirely on the screen - always! No more scrolling to get to the cards.
   * The font in the cards needs to scale with the card size
   * Make all cards square - this will require column width and row height to be equal.
-* [ ] Step 3: Code
+* [x] Step 3: Code
   * create the selectors for the board: height and width - These can go from 2-~~12~~whatever -- need to make sure the columns%rows == 0
   * on the board render make the card sizes based off of the multiples of these numbers ~~(col-xs-12)~~
   * add more colors for the cards
