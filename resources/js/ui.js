@@ -58,10 +58,7 @@ ui.closeSettings = function () {
   var row = $('.rows').find(":selected").val();
   var col = $('.cols').find(":selected").val();
 
-  console.log({
-    rows: row,
-    cols: col
-  });
+  // console.log({rows: row, cols: col});
   MatchGame.setRowsCols({
     rows: row,
     cols: col
