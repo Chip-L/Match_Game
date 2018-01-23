@@ -6,12 +6,15 @@ The Codecademy solution can be found in [./resources/Misc/solution](https://chip
 To do list:
 - [x] ~~* complete basic game from Codecademy instructions~~ (completed Dec 20, 2017)
 - [x] ~~Make rules collapsible so they fit mobile better~~ (completed Jan 6, 2018)
+  - [ ] Make rules pause the timer.  
 - [x] ~~* Indicate that the user won when all pairs have been found~~ (completed Jan 7, 2018)
 - [x] ~~* Add a "Restart Game" button~~ (completed Jan 7, 2018)
   - [ ] add fireworks to win screen
 - [x] ~~* Only allow two cards to be visible at a time (currently the setTimeout allows users to click really quickly and see a few)~~ (completed Jan 13, 2018)
 - [ ] \* Allow user to select from multiple board sizes
-  - [ ] adjust font size to keep cards square (start here: https://stackoverflow.com/questions/16056591/font-scaling-based-on-width-of-container)
+  - [x] adjust font size to keep cards square ~~(start here: https://stackoverflow.com/questions/16056591/font-scaling-based-on-width-of-container)~~ (completed Jan 21, 2018)
+  - [ ] Make settings pause timer.
+  - [ ] If changes are done midgame, warn that game will be reset
 - [ ] \* Change card values to non-number values (images)
 - [x] ~~* Add score or time:~~
   - [x] ~~clicks~~ (completed Jan 7, 2018)
@@ -83,3 +86,6 @@ I briefly dabbled with changing things to _IIFE_ functions and name spaces (like
 
 ~~Note: adding a non-breaking space (&nbsp;) to the cards keeps them a consistent size I need a better solution than this.~~
 I got the columns and rows to resize properly. I need to add in a resize function though, it isn't dynamic.
+
+(Jan 22, 2018)
+I got the settings dialog working. It turns out that the reset.css resets the fieldset properties. I had to add them back in. I just need to fix the board to be able to deal with an odd number of squares. I think I will just have it drop off the last match.
