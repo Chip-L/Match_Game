@@ -2,8 +2,8 @@ var MatchGame = {};
 
 MatchGame.clickCount = 0;
 MatchGame.interval; // used to track the timeout function
-MatchGame.rows = 3;
-MatchGame.cols = 3;
+MatchGame.rows = 2;
+MatchGame.cols = 2;
 
 /*
   Executes the game. Sets up the board and resets the clickCount.
