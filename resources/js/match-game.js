@@ -46,15 +46,7 @@ MatchGame.generateCardValues = function () {
       arrRandom = [];
 
   var numCards = MatchGame.rows * MatchGame.cols;
-  var numPairs = numCards/2;
-
-  try {
-    if(Math.floor(numPairs) != numPairs) throw 'not an even number: ' + numPairs;
-  } catch (e) {
-    console.log(e);
-  } finally {
-    numPairs = Math.trunc(numPairs); // removes extra cards if nothing else
-  }
+  var numPairs = Math.trunc(numCards/2); // removes extra cards if numPairs is odd
 
   for(var i=0; i < numPairs; i++) {
     arrOrdered.push(i + 1);
@@ -193,11 +185,14 @@ MatchGame.checkWin = function ($game) {
     }
   } );
 
-  // if(flippedCount > 0) {
+  // if win: stop timer, show win screen, increase level
   if(flippedCount === flipsNeeded) {
     Timer.stopTimer();
 
-      ui.showWin(MatchGame.createWinDesc());
+    ui.showWin(MatchGame.createWinDesc());
+
+    // set next level
+    (MatchGame.cols > MatchGame.rows) ? (MatchGame.rows++) : (MatchGame.cols++);
   }
 } // end MatchGame.checkWin
 
@@ -235,7 +230,8 @@ MatchGame.showResetCard = function ($card) {
 */
 MatchGame.createWinDesc = function() {
   var t = Timer.getTimeObj();
-  var displayText ='It took you ' + MatchGame.clickCount + ' clicks in ';
+  var displayText ='On a ' + MatchGame.cols + 'X' + MatchGame.rows +
+  ' board, it took you ' + MatchGame.clickCount + ' clicks in ';
 
   if(t.hours > 0) {
     displayText += t.hours + ' hours, ';
