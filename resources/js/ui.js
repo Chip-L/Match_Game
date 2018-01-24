@@ -5,12 +5,9 @@ ui.init = function () {
   $('.settings').click(ui.showSettings);
 
   $('.custom_modal_close').click(ui.closeModal);
-
-  // ui.boardSize();
 };
 
 ui.openModal = function (callback) {
-
   $('.custom_block_page').fadeIn(600);
   $('.custom_modal_box').fadeIn(600, callback);
 };
