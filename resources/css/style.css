@@ -77,6 +77,11 @@ li a {
   font-size: 1.5rem;
   font-weight: bold;
   opacity: 0.6;
+  transition: opacity 300ms linear;
+}
+
+li a:hover {
+  opacity: 1;
 }
 
 .nodisplay,
