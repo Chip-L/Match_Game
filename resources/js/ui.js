@@ -6,8 +6,9 @@ var ui = {};
 ui.init = function () {
   $('.rule').click(ui.showRules);
   $('.settings').click(ui.showSettings);
-
   $('.custom_modal_close').click(ui.closeModal);
+
+  $(window).resize(ui.boardSize);
 };
 
 /*
