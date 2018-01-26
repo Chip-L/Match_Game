@@ -92,3 +92,6 @@ I got the columns and rows to resize properly. I need to add in a resize functio
 I got the settings dialog working. It turns out that the reset.css resets the fieldset properties. I had to add them back in. I just need to fix the board to be able to deal with an odd number of squares. I think I will just have it drop off the last match.
 
 I fixed the odd number of squares by allowing the squares. I only set up the correct number of matches. Then if there are too many columns than there are matches (the last row/col), then I put in a card that has an "empty" class on it. The "empty" class just turns the card's colors back to the background. I also had to attach the click event to each card rather than all at the same time (I don't think this particularly matters).
+
+(Jan 25, 2018)
+Fixed the resize issue. There is still a problem with the text. It works now for 2 digit numbers, but 3 digit numbers overflow. Need to look at the ::before and ::after tags - they might help.
